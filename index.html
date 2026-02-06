@@ -336,9 +336,14 @@
 <!-- ================= PROJECTS (Lux) ================= -->
 <section id="projects" class="fade-section py-24 bg-slate-800">
   <div class="max-w-6xl mx-auto px-6">
-    <h3 class="text-3xl font-bold text-white text-center mb-12">Projects</h3>
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="text-3xl font-bold text-white">Projects</h3>
+      <button id="viewAllBtn" class="text-indigo-400 font-semibold hover:text-indigo-300">
+        View All
+      </button>
+    </div>
 
-    <!-- WRAPPER -->
+    <!-- HORIZONTAL SLIDER -->
     <div class="projects-wrapper">
       <div class="projects-track flex gap-8">
 
@@ -367,38 +372,18 @@
           </p>
         </div>
 
-        <!-- Duplicate Cards for seamless loop -->
-        <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
-          <h4 class="text-xl font-semibold mb-2 text-white">Assignment Manager Platform</h4>
-          <p class="text-gray-300">
-            A student-level assignment management system featuring a REST API,
-            Telegram bot integration, and role-based user management.
-          </p>
-        </div>
-
-        <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
-          <h4 class="text-xl font-semibold mb-2 text-white">Smart Identity Access Platform</h4>
-          <p class="text-gray-300">
-            An intelligent authentication platform combining face recognition,
-            secure access control, and identity verification workflows.
-          </p>
-        </div>
-
-        <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
-          <h4 class="text-xl font-semibold mb-2 text-white">FaceSense AI</h4>
-          <p class="text-gray-300">
-            A real-time desktop application for face analysis, including face mesh
-            visualization, emotion detection, and face recognition.
-          </p>
-        </div>
-
       </div>
+    </div>
+
+    <!-- GRID VIEW (Initially Hidden) -->
+    <div id="projectsGrid" class="hidden mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Project items will be cloned here dynamically -->
     </div>
   </div>
 </section>
 
 <style>
-  /* ================= Project Cards Lux ================= */
+  /* Project Cards */
   .project-card {
     width: 320px;
     min-height: 320px;
@@ -420,14 +405,10 @@
   .project-card:hover {
     transform: translateY(-10px) scale(1.03);
     box-shadow: 0 25px 50px rgba(79,70,229,0.5);
-    background: linear-gradient(
-      145deg,
-      rgba(79,70,229,0.2),
-      rgba(55,48,163,0.2)
-    );
+    background: linear-gradient(145deg, rgba(79,70,229,0.2), rgba(55,48,163,0.2));
   }
 
-  /* ================= Horizontal Slider ================= */
+  /* Slider */
   .projects-wrapper {
     overflow: hidden;
     position: relative;
@@ -441,74 +422,173 @@
   }
 
   @keyframes scrollProjects {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Grid view cards */
+  .grid-card {
+    background: linear-gradient(145deg, rgba(30,41,59,0.7), rgba(17,24,39,0.7));
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(79,70,229,0.2);
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .grid-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(79,70,229,0.5);
+  }
+
+  /* Modal */
+  .project-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 60;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-modal.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .project-modal-content {
+    background: #1e293b;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 600px;
+    width: 90%;
+    color: #fff;
+    text-align: left;
+    position: relative;
+  }
+
+  .project-modal-content h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-modal-content p {
+    color: #cbd5e1;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #fff;
   }
 </style>
 
 <script>
-  /* Fade-in observer */
+document.addEventListener('DOMContentLoaded', () => {
   const projectCards = document.querySelectorAll('.project-card');
-  const projectObserver = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-  projectCards.forEach(card => projectObserver.observe(card));
-
-  /* Slider Pause/Resume on Hover */
   const slider = document.querySelector('.projects-wrapper');
   const track = document.querySelector('.projects-track');
+  const projectsGrid = document.getElementById('projectsGrid');
+  const viewAllBtn = document.getElementById('viewAllBtn');
 
-  slider.addEventListener('mouseenter', () => {
+  // Intersection Observer برای انیمیشن slider
+  const projectObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.2 });
+  projectCards.forEach(card => projectObserver.observe(card));
+
+  // Pause/Resume slider on hover
+  slider.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
+  slider.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
+
+  // Dragging slider
+  let isDown = false, startX, currentTranslate = 0;
+  slider.addEventListener('mousedown', e => { 
+    isDown = true; 
+    startX = e.clientX; 
+    track.style.animationPlayState = 'paused'; 
+    slider.style.cursor = 'grabbing'; 
+  });
+  slider.addEventListener('mouseup', () => { 
+    isDown = false; 
+    track.style.animationPlayState = 'running'; 
+    slider.style.cursor = 'grab'; 
+  });
+  slider.addEventListener('mouseleave', () => { 
+    isDown = false; 
+    track.style.animationPlayState = 'running'; 
+    slider.style.cursor = 'grab'; 
+  });
+  slider.addEventListener('mousemove', e => { 
+    if(!isDown) return; 
+    const delta = e.clientX - startX; 
+    currentTranslate += delta; 
+    track.style.transform = `translateX(${currentTranslate}px)`; 
+    startX = e.clientX; 
+  });
+
+  // Modal
+  const modal = document.createElement('div');
+  modal.classList.add('project-modal');
+  modal.innerHTML = `
+    <div class="project-modal-content">
+      <span class="modal-close">&times;</span>
+      <h4></h4>
+      <p></p>
+    </div>`;
+  document.body.appendChild(modal);
+
+  const modalTitle = modal.querySelector('h4');
+  const modalDesc = modal.querySelector('p');
+  const modalClose = modal.querySelector('.modal-close');
+
+  modalClose.addEventListener('click', () => modal.classList.remove('active'));
+  modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('active'); });
+
+  // ====== View All Functionality ======
+  viewAllBtn.addEventListener('click', () => {
+    // Hide slider
+    slider.style.display = 'none';
     track.style.animationPlayState = 'paused';
-  });
+    projectsGrid.innerHTML = '';
 
-  slider.addEventListener('mouseleave', () => {
-    track.style.animationPlayState = 'running';
-  });
+    projectCards.forEach(card => {
+      const title = card.querySelector('h4').textContent;
+      const desc = card.querySelector('p').textContent;
 
-  /* Dragging Support */
-  let isDown = false;
-  let startX;
-  let currentTranslate = 0;
+      const gridCard = document.createElement('div');
+      gridCard.classList.add('grid-card');
+      gridCard.textContent = title;
 
-  slider.addEventListener('mousedown', e => {
-    isDown = true;
-    startX = e.clientX;
-    track.style.animationPlayState = 'paused';
-    slider.style.cursor = 'grabbing';
-  });
+      // ذخیره متن کامل در dataset برای modal
+      gridCard.dataset.title = title;
+      gridCard.dataset.desc = desc;
 
-  slider.addEventListener('mouseup', () => {
-    isDown = false;
-    track.style.animationPlayState = 'running';
-    slider.style.cursor = 'grab';
-  });
+      gridCard.addEventListener('click', () => {
+        modalTitle.textContent = gridCard.dataset.title;
+        modalDesc.textContent = gridCard.dataset.desc;
+        modal.classList.add('active');
+      });
 
-  slider.addEventListener('mouseleave', () => {
-    isDown = false;
-    track.style.animationPlayState = 'running';
-    slider.style.cursor = 'grab';
-  });
+      projectsGrid.appendChild(gridCard);
+    });
 
-  slider.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    const delta = e.clientX - startX;
-    currentTranslate += delta;
-    track.style.transform = `translateX(${currentTranslate}px)`;
-    startX = e.clientX;
+    projectsGrid.classList.remove('hidden');
   });
+});
 </script>
+
 
 <!-- ================= CONTACT ================= -->
 <section id="contact" class="fade-section py-24">
