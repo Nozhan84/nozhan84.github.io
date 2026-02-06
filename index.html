@@ -526,15 +526,15 @@ document.addEventListener('DOMContentLoaded', () => {
   projectCards.forEach(card => projectObserver.observe(card));
 
   // ===== Hover zoom effect روی کارت‌های Slider =====
-projectCards.forEach(card => {
-  card.addEventListener('mouseenter', () => {
-    card.style.transform = 'translateY(-10px) scale(1.03)';
-    card.style.transition = 'transform 0.3s ease';
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'translateY(0) scale(1)';
-    card.style.transition = 'transform 0.3s ease';
-  });
+  projectCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.transform = 'translateY(-10px) scale(1.03)';
+      card.style.transition = 'transform 0.3s ease';
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'translateY(0) scale(1)';
+      card.style.transition = 'transform 0.3s ease';
+    });
   });
 
   // Pause/Resume slider
