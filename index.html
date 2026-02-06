@@ -492,6 +492,13 @@
   }
 </style>
 
+<!-- اضافه کردن دکمه Back -->
+<div class="flex justify-end mb-4">
+  <button id="backToSliderBtn" class="text-indigo-400 font-semibold hover:text-indigo-300 hidden">
+    Back to Slider
+  </button>
+</div>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   const projectCards = document.querySelectorAll('.project-card');
@@ -499,8 +506,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const track = document.querySelector('.projects-track');
   const projectsGrid = document.getElementById('projectsGrid');
   const viewAllBtn = document.getElementById('viewAllBtn');
+  const backToSliderBtn = document.getElementById('backToSliderBtn');
 
-  // Intersection Observer برای انیمیشن slider
+  // Intersection Observer برای slider
   const projectObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if(entry.isIntersecting) entry.target.classList.add('visible');
@@ -508,7 +516,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.2 });
   projectCards.forEach(card => projectObserver.observe(card));
 
-  // Pause/Resume slider on hover
+  // Pause/Resume slider
   slider.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
   slider.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
 
@@ -556,25 +564,42 @@ document.addEventListener('DOMContentLoaded', () => {
   modalClose.addEventListener('click', () => modal.classList.remove('active'));
   modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('active'); });
 
-  // ====== View All Functionality ======
+  // ===== View All =====
   viewAllBtn.addEventListener('click', () => {
-    // Hide slider
     slider.style.display = 'none';
     track.style.animationPlayState = 'paused';
     projectsGrid.innerHTML = '';
 
-    projectCards.forEach(card => {
+    projectCards.forEach((card, index) => {
       const title = card.querySelector('h4').textContent;
       const desc = card.querySelector('p').textContent;
 
       const gridCard = document.createElement('div');
       gridCard.classList.add('grid-card');
       gridCard.textContent = title;
-
-      // ذخیره متن کامل در dataset برای modal
       gridCard.dataset.title = title;
       gridCard.dataset.desc = desc;
 
+      // Fade-in effect
+      gridCard.style.opacity = 0;
+      gridCard.style.transform = 'translateY(20px)';
+      gridCard.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      setTimeout(() => {
+        gridCard.style.opacity = 1;
+        gridCard.style.transform = 'translateY(0)';
+      }, index * 150);
+
+      // Hover zoom
+      gridCard.addEventListener('mouseenter', () => {
+        gridCard.style.transform = 'scale(1.05)';
+        gridCard.style.transition = 'transform 0.3s ease';
+      });
+      gridCard.addEventListener('mouseleave', () => {
+        gridCard.style.transform = 'translateY(0) scale(1)';
+        gridCard.style.transition = 'transform 0.3s ease';
+      });
+
+      // modal event
       gridCard.addEventListener('click', () => {
         modalTitle.textContent = gridCard.dataset.title;
         modalDesc.textContent = gridCard.dataset.desc;
@@ -585,10 +610,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     projectsGrid.classList.remove('hidden');
+    viewAllBtn.style.display = 'none';
+    backToSliderBtn.classList.remove('hidden');
+  });
+
+  // ===== Back to Slider with smooth animation =====
+  backToSliderBtn.addEventListener('click', () => {
+    projectsGrid.classList.add('hidden');
+
+    slider.style.display = 'flex';
+    track.style.animationPlayState = 'paused'; // start paused to animate
+
+    projectCards.forEach((card, index) => {
+      card.style.opacity = 0;
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      setTimeout(() => {
+        card.style.opacity = 1;
+        card.style.transform = 'translateY(0)';
+      }, index * 150);
+    });
+
+    // restart animation after fade-in
+    setTimeout(() => {
+      track.style.animationPlayState = 'running';
+    }, projectCards.length * 150 + 200);
+
+    backToSliderBtn.classList.add('hidden');
+    viewAllBtn.style.display = 'inline-block';
   });
 });
 </script>
-
 
 <!-- ================= CONTACT ================= -->
 <section id="contact" class="fade-section py-24">
