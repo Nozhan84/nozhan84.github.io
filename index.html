@@ -336,11 +336,14 @@
 <!-- ================= PROJECTS (Lux) ================= -->
 <section id="projects" class="fade-section py-24 bg-slate-800">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="flex justify-between items-center mb-6">
-      <h3 class="text-3xl font-bold text-white">Projects</h3>
-      <button id="viewAllBtn" class="text-indigo-400 font-semibold hover:text-indigo-300">
-        View All
-      </button>
+    <div class="flex justify-center items-center mb-6 relative">
+      <h3 class="text-3xl font-bold text-white text-center absolute left-1/2 transform -translate-x-1/2">
+        Projects
+      </h3>
+      <div class="flex gap-4 ml-auto">
+        <button id="viewAllBtn" class="project-btn">View All</button>
+        <button id="backToSliderBtn" class="project-btn hidden">Back</button>
+      </div>
     </div>
 
     <!-- HORIZONTAL SLIDER -->
@@ -383,7 +386,7 @@
 </section>
 
 <style>
-  /* Project Cards */
+  /* ===== Project Cards ===== */
   .project-card {
     width: 320px;
     min-height: 320px;
@@ -396,37 +399,33 @@
     display: flex;
     flex-direction: column;
   }
-
   .project-card.visible {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-
   .project-card:hover {
     transform: translateY(-10px) scale(1.03);
     box-shadow: 0 25px 50px rgba(79,70,229,0.5);
     background: linear-gradient(145deg, rgba(79,70,229,0.2), rgba(55,48,163,0.2));
   }
 
-  /* Slider */
+  /* ===== Slider ===== */
   .projects-wrapper {
     overflow: hidden;
     position: relative;
     cursor: grab;
   }
-
   .projects-track {
     display: flex;
     width: max-content;
     animation: scrollProjects 40s linear infinite;
   }
-
   @keyframes scrollProjects {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
   }
 
-  /* Grid view cards */
+  /* ===== Grid Cards ===== */
   .grid-card {
     background: linear-gradient(145deg, rgba(30,41,59,0.7), rgba(17,24,39,0.7));
     backdrop-filter: blur(6px);
@@ -435,14 +434,14 @@
     border-radius: 1rem;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
   }
-
   .grid-card:hover {
     transform: scale(1.05);
     box-shadow: 0 15px 40px rgba(79,70,229,0.5);
   }
 
-  /* Modal */
+  /* ===== Modal ===== */
   .project-modal {
     position: fixed;
     inset: 0;
@@ -455,12 +454,10 @@
     pointer-events: none;
     transition: opacity 0.3s ease;
   }
-
   .project-modal.active {
     opacity: 1;
     pointer-events: all;
   }
-
   .project-modal-content {
     background: #1e293b;
     padding: 2rem;
@@ -471,33 +468,45 @@
     text-align: left;
     position: relative;
   }
-
-  .project-modal-content h4 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .project-modal-content p {
-    color: #cbd5e1;
-  }
-
+  .project-modal-content h4 { font-size: 1.5rem; margin-bottom: 1rem; }
+  .project-modal-content p { color: #cbd5e1; }
   .modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 1.2rem;
+    position: absolute; top: 1rem; right: 1rem;
+    cursor: pointer; font-weight: bold; font-size: 1.2rem;
     color: #fff;
   }
-</style>
 
-<!-- اضافه کردن دکمه Back -->
-<div class="flex justify-end mb-4">
-  <button id="backToSliderBtn" class="text-indigo-400 font-semibold hover:text-indigo-300 hidden">
-    Back to Slider
-  </button>
-</div>
+  /* ===== Buttons ===== */
+  .project-btn {
+    font-weight: 600;
+    color: #8b5cf6;
+    background: linear-gradient(90deg, rgba(139,92,246,0.1), rgba(139,92,246,0.2));
+    padding: 0.5rem 1.2rem;
+    border-radius: 0.75rem;
+    border: 1px solid #8b5cf6;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-btn:hover {
+    background: linear-gradient(90deg, rgba(139,92,246,0.2), rgba(139,92,246,0.4));
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(139,92,246,0.5);
+  }
+  .project-btn::after {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    background: rgba(255,255,255,0.1);
+    transform: skewX(-20deg);
+    transition: all 0.5s ease;
+  }
+  .project-btn:hover::after { left: 100%; }
+</style>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
