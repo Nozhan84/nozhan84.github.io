@@ -96,7 +96,9 @@
     </div>
 
     <div class="flex justify-center">
-      <img src="images/picture_1.png" class="rounded-full border-4 border-indigo-400 shadow-lg" alt="Profile Picture">
+      <img src="images/picture_1.png"
+          class="rounded-full border-4 border-indigo-400 shadow-lg"
+          alt="Nozhan Nazari profile photo">
     </div>
 
   </div>
@@ -335,35 +337,51 @@
 <section id="projects" class="fade-section py-24 bg-slate-800">
   <div class="max-w-6xl mx-auto px-6">
     <h3 class="text-3xl font-bold text-white text-center mb-12">Projects</h3>
-    <div class="grid md:grid-cols-3 gap-8">
 
-      <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
-        <h4 class="text-xl font-semibold mb-2 text-white">Assignment Manager Platform</h4>
-        <p class="text-gray-300">A student-level assignment management system featuring a REST API, Telegram bot integration, and role-based user management.</p>
+    <!-- WRAPPER (فقط اضافه شده) -->
+    <div class="projects-wrapper">
+      <div class="projects-track flex gap-8">
+
+        <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
+          <h4 class="text-xl font-semibold mb-2 text-white">Assignment Manager Platform</h4>
+          <p class="text-gray-300">
+            A student-level assignment management system featuring a REST API,
+            Telegram bot integration, and role-based user management.
+          </p>
+        </div>
+
+        <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
+          <h4 class="text-xl font-semibold mb-2 text-white">Smart Identity Access Platform</h4>
+          <p class="text-gray-300">
+            An intelligent authentication platform combining face recognition,
+            secure access control, and identity verification workflows.
+          </p>
+        </div>
+
+        <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
+          <h4 class="text-xl font-semibold mb-2 text-white">FaceSense AI</h4>
+          <p class="text-gray-300">
+            A real-time desktop application for face analysis, including face mesh
+            visualization, emotion detection, and face recognition.
+          </p>
+        </div>
+
       </div>
-
-      <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
-        <h4 class="text-xl font-semibold mb-2 text-white">Smart Identity Access Platform</h4>
-        <p class="text-gray-300">An intelligent authentication platform combining face recognition, secure access control, and identity verification workflows.</p>
-      </div>
-
-      <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
-        <h4 class="text-xl font-semibold mb-2 text-white">FaceSense AI</h4>
-        <p class="text-gray-300">A real-time desktop application for face analysis, including face mesh visualization, emotion detection, and face recognition.</p>
-      </div>
-
     </div>
   </div>
 </section>
 
 <style>
-  /* Project Cards Lux */
+  /* ================= Project Cards Lux ================= */
   .project-card {
+    width: 320px;
+    min-height: 320px; /* مربع و بزرگ مثل قبل */
     transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
     opacity: 0;
     transform: translateY(30px) scale(0.95);
     cursor: pointer;
     backdrop-filter: blur(5px);
+    flex-shrink: 0;
   }
 
   .project-card.visible {
@@ -374,22 +392,92 @@
   .project-card:hover {
     transform: translateY(-10px) scale(1.03);
     box-shadow: 0 25px 50px rgba(79,70,229,0.5);
-    background: linear-gradient(145deg, rgba(79,70,229,0.2), rgba(55,48,163,0.2));
+    background: linear-gradient(
+      145deg,
+      rgba(79,70,229,0.2),
+      rgba(55,48,163,0.2)
+    );
+  }
+
+  /* ================= Horizontal Slider ================= */
+  .projects-wrapper {
+    overflow: hidden;
+    position: relative;
+    cursor: grab;
+  }
+
+  .projects-track {
+    display: flex;
+    width: max-content;
+    animation: scrollProjects 40s linear infinite;
+  }
+
+  .projects-wrapper:hover .projects-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes scrollProjects {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
 </style>
 
 <script>
-  // Scroll observer برای fade-in Project cards
+  /* Fade-in observer (بدون تغییر) */
   const projectCards = document.querySelectorAll('.project-card');
-  const projectObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.2 });
+  const projectObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
 
   projectCards.forEach(card => projectObserver.observe(card));
+</script>
+
+<script>
+  /* Drag + pause/resume (اصلاح‌شده، بدون تداخل با animation) */
+  const slider = document.querySelector('.projects-wrapper');
+  const track = document.querySelector('.projects-track');
+
+  let isDown = false;
+  let startX;
+  let currentTranslate = 0;
+
+  slider.addEventListener('mousedown', e => {
+    isDown = true;
+    startX = e.clientX;
+    track.style.animationPlayState = 'paused';
+    slider.style.cursor = 'grabbing';
+  });
+
+  slider.addEventListener('mouseup', () => {
+    isDown = false;
+    track.style.animationPlayState = 'running';
+    slider.style.cursor = 'grab';
+  });
+
+  slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    track.style.animationPlayState = 'running';
+    slider.style.cursor = 'grab';
+  });
+
+  slider.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    const delta = e.clientX - startX;
+    currentTranslate += delta;
+    track.style.transform = `translateX(${currentTranslate}px)`;
+    startX = e.clientX;
+  });
 </script>
 
 <!-- ================= CONTACT ================= -->
@@ -425,3 +513,4 @@
 
 </body>
 </html>
+
