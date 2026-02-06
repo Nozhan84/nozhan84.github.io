@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nozhan Nazari | Portfolio</title>
 
+  <!-- SEO -->
+  <meta name="description" content="Nozhan Nazari — Python Developer specializing in backend systems, AI-powered applications, Telegram bots, and desktop software." />
+  <meta name="keywords" content="Python Developer, Backend Developer, FastAPI, AI, Computer Vision, Telegram Bot, PyQt, Nozhan Nazari" />
+  <meta name="author" content="Nozhan Nazari" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Nozhan Nazari | Python & AI Developer" />
+  <meta property="og:description" content="Backend systems, AI-powered applications, Telegram bots, and scalable software solutions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/picture_1.png" />
+
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -20,6 +31,17 @@
     }
     body {
       font-family: 'Inter', sans-serif;
+    }
+
+    /* Subtle scroll animation */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -44,15 +66,14 @@
 <section id="home" class="min-h-screen flex items-center pt-24">
   <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
 
-    <!-- Text -->
     <div>
-      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
         Hi, I'm <span class="text-indigo-400">Nozhan Nazari</span>
       </h2>
       <p class="text-xl text-gray-400 mb-6">
         Python Developer | Backend, AI & Automation
       </p>
-      <p class="text-gray-400 mb-8">
+      <p class="text-gray-400 mb-8 text-base md:text-lg">
         I turn complex ideas into scalable systems — from backend APIs and Telegram bots
         to AI-powered desktop applications.
       </p>
@@ -66,35 +87,23 @@
         </a>
       </div>
 
-      <!-- Socials -->
       <div class="flex gap-4">
-        <a href="https://github.com/Nozhan84" target="_blank" class="hover:text-indigo-400">
-          <i data-feather="github"></i>
-        </a>
-        <a href="mailto:nozhannazari4484@gmail.com" class="hover:text-indigo-400">
-          <i data-feather="mail"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/nozhan-nazari/" target="_blank" class="hover:text-indigo-400">
-          <i data-feather="linkedin"></i>
-        </a>
-        <a href="https://t.me/NozhanLN" target="_blank" class="hover:text-indigo-400">
-          <i data-feather="send"></i>
-        </a>
+        <a href="https://github.com/Nozhan84" target="_blank" class="hover:text-indigo-400"><i data-feather="github"></i></a>
+        <a href="mailto:nozhannazari4484@gmail.com" class="hover:text-indigo-400"><i data-feather="mail"></i></a>
+        <a href="https://www.linkedin.com/in/nozhan-nazari/" target="_blank" class="hover:text-indigo-400"><i data-feather="linkedin"></i></a>
+        <a href="https://t.me/NozhanLN" target="_blank" class="hover:text-indigo-400"><i data-feather="send"></i></a>
       </div>
     </div>
 
-    <!-- Image -->
     <div class="flex justify-center">
-      <img src="images/picture_1.png"
-           class="rounded-full border-4 border-indigo-400 shadow-lg"
-           alt="Profile Picture">
+      <img src="images/picture_1.png" class="rounded-full border-4 border-indigo-400 shadow-lg" alt="Profile Picture">
     </div>
 
   </div>
 </section>
 
 <!-- ================= ABOUT ================= -->
-<section id="about" class="py-24 bg-slate-800">
+<section id="about" class="fade-section py-24 bg-slate-800">
   <div class="max-w-4xl mx-auto px-6 text-center">
     <h3 class="text-3xl font-bold text-white mb-6">About Me</h3>
     <p class="text-gray-400 leading-relaxed">
@@ -103,14 +112,16 @@
       using face recognition and computer vision. I'm currently focused on FastAPI,
       secure architectures, and scalable system design.
     </p>
+    <p class="mt-6 text-sm text-gray-500 italic">
+      Fun fact: I enjoy debugging complex systems more than writing new code ☕🐍
+    </p>
   </div>
 </section>
 
 <!-- ================= SKILLS ================= -->
-<section id="skills" class="py-24">
+<section id="skills" class="fade-section py-24">
   <div class="max-w-6xl mx-auto px-6">
     <h3 class="text-3xl font-bold text-white text-center mb-12">Skills</h3>
-
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
       <div class="bg-slate-800 p-6 rounded-lg">Python</div>
       <div class="bg-slate-800 p-6 rounded-lg">FastAPI / Flask</div>
@@ -125,10 +136,9 @@
 </section>
 
 <!-- ================= PROJECTS ================= -->
-<section id="projects" class="py-24 bg-slate-800">
+<section id="projects" class="fade-section py-24 bg-slate-800">
   <div class="max-w-6xl mx-auto px-6">
     <h3 class="text-3xl font-bold text-white text-center mb-12">Projects</h3>
-
     <div class="grid md:grid-cols-3 gap-8">
       <div class="bg-slate-900 p-6 rounded-lg">
         <h4 class="text-xl font-semibold mb-2">Assignment Manager Platform</h4>
@@ -136,32 +146,27 @@
           A student-level assignment management system featuring a REST API,
           Telegram bot integration, and role-based user management.
         </p>
-        <a href="#" class="text-indigo-400 hover:underline">View on GitHub →</a>
       </div>
-
       <div class="bg-slate-900 p-6 rounded-lg">
         <h4 class="text-xl font-semibold mb-2">Smart Identity Access Platform</h4>
         <p class="text-gray-400 mb-4">
           An intelligent authentication platform combining face recognition,
           secure access control, and identity verification workflows.
         </p>
-        <a href="#" class="text-indigo-400 hover:underline">View on GitHub →</a>
       </div>
-
       <div class="bg-slate-900 p-6 rounded-lg">
         <h4 class="text-xl font-semibold mb-2">FaceSense AI</h4>
         <p class="text-gray-400 mb-4">
           A real-time desktop application for face analysis, including face mesh visualization,
           emotion detection, and face recognition.
         </p>
-        <a href="#" class="text-indigo-400 hover:underline">View on GitHub →</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= CONTACT ================= -->
-<section id="contact" class="py-24">
+<section id="contact" class="fade-section py-24">
   <div class="max-w-4xl mx-auto px-6 text-center">
     <h3 class="text-3xl font-bold text-white mb-6">Contact</h3>
     <p class="text-gray-400 mb-6">
@@ -178,6 +183,17 @@
 
 <script>
   feather.replace();
+
+  const sections = document.querySelectorAll('.fade-section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  sections.forEach(section => observer.observe(section));
 </script>
 
 </body>
