@@ -666,29 +666,99 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <style>
-  /* ===== GitHub Button inside modal ===== */
+  /* ===== GitHub Button inside modal (inline) ===== */
   .github-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 1.5rem;
-    padding: 0.5rem 1rem;
+    margin-top: 1.25rem;
+    padding: 0.4rem 0.8rem;
     border: 1px solid #8b5cf6;
-    border-radius: 0.75rem;
+    border-radius: 0.6rem;
     color: #8b5cf6;
     font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1;
     transition: all 0.3s ease;
     text-decoration: none;
+    width: fit-content;   /* 👈 مهم: جمع‌وجور و inline */
   }
+
+  .github-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;   /* 👈 رنگ لوگو = رنگ متن */
+  }
+
   .github-btn:hover {
-    background: linear-gradient(90deg, rgba(139,92,246,0.2), rgba(139,92,246,0.4));
-    transform: scale(1.05);
+    background: linear-gradient(
+      90deg,
+      rgba(139,92,246,0.2),
+      rgba(139,92,246,0.4)
+    );
+    transform: translateY(-1px) scale(1.05);
     box-shadow: 0 8px 25px rgba(139,92,246,0.5);
     color: #fff;
   }
-  .github-btn i {
-    width: 20px;
-    height: 20px;
+
+  .project-modal {
+    backdrop-filter: blur(0px);
+  }
+
+  .project-modal.active {
+    backdrop-filter: blur(6px);
+  }
+
+  .project-modal-content {
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.4s ease;
+  }
+
+  .project-modal.active .project-modal-content {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  /* ===== Skills-like Hover Effect for Projects Grid ===== */
+  .grid-card {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+      135deg,
+      rgba(30,41,59,0.7),
+      rgba(17,24,39,0.7)
+    );
+  }
+
+  .grid-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      rgba(139,92,246,0.25),
+      rgba(79,70,229,0.25),
+      rgba(139,92,246,0.25)
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+  }
+
+  .grid-card:hover::before {
+    opacity: 1;
+  }
+
+  .grid-card:hover {
+    color: #fff;
+    box-shadow:
+      0 0 25px rgba(139,92,246,0.6),
+      0 0 60px rgba(79,70,229,0.4);
+  }
+
+  .grid-card {
+    z-index: 1;
   }
 </style>
 
@@ -709,8 +779,33 @@ document.addEventListener('DOMContentLoaded', () => {
       <span class="modal-close">&times;</span>
       <h4></h4>
       <p></p>
-      <a href="#" target="_blank" class="github-btn">
-        <i data-feather="github"></i> View in GitHub
+
+      <a class="github-btn" target="_blank">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 
+          3.29 9.39 7.86 10.92.58.1.79-.25.79-.56 
+          0-.28-.01-1.02-.02-2-3.2.69-3.88-1.54-3.88-1.54
+          -.53-1.34-1.29-1.7-1.29-1.7-1.06-.72.08-.7.08-.7
+          1.17.08 1.78 1.2 1.78 1.2
+          1.04 1.78 2.73 1.27 3.4.97
+          .11-.75.41-1.27.74-1.56
+          -2.55-.29-5.23-1.28-5.23-5.69
+          0-1.26.45-2.29 1.19-3.1
+          -.12-.29-.52-1.45.11-3.02
+          0 0 .97-.31 3.18 1.18
+          .92-.26 1.91-.39 2.89-.39
+          .98 0 1.97.13 2.89.39
+          2.2-1.49 3.17-1.18 3.17-1.18
+          .63 1.57.23 2.73.11 3.02
+          .74.81 1.19 1.84 1.19 3.1
+          0 4.42-2.69 5.39-5.25 5.67
+          .42.36.79 1.08.79 2.18
+          0 1.57-.01 2.84-.01 3.22
+          0 .31.21.67.8.56
+          4.56-1.53 7.85-5.84 7.85-10.92
+          C23.5 5.73 18.27.5 12 .5z"/>
+        </svg>
+        View in GitHub
       </a>
     </div>`;
   document.body.appendChild(modal);
@@ -775,6 +870,7 @@ document.addEventListener('DOMContentLoaded', () => {
       gridCard.addEventListener('click', () => {
         modalTitle.textContent = gridCard.dataset.title;
         modalDesc.textContent = gridCard.dataset.desc;
+        modal.querySelector('.github-btn').href = gridCard.dataset.github;
 
         // لینک GitHub هر پروژه
         githubBtn.href = gridCard.dataset.github;
@@ -829,4 +925,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-projectCards.forEach(card => projectObserver.observe(card));
+modalDesc.textContent = gridCard.dataset.desc;
