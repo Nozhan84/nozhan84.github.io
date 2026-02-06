@@ -219,129 +219,178 @@
 </script>
 
 
-<!-- ================= SKILLS ================= -->
-<section id="skills" class="fade-section py-24">
+<!-- ================= SKILLS (Lux) ================= -->
+<section id="skills" class="fade-section py-24 bg-slate-900">
   <div class="max-w-6xl mx-auto px-6">
     <h3 class="text-3xl font-bold text-white text-center mb-12">Skills</h3>
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
 
-      <!-- Python (with Devicon SVG) -->
-      <div class="skill-card bg-slate-800 p-6 rounded-lg flex items-center justify-center gap-2">
+      <!-- Python -->
+      <div class="skill-card p-6 rounded-2xl flex flex-col items-center gap-3">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-            class="w-6 h-6 skill-icon"
-            alt="Python Logo">
-        Python
+             class="skill-icon w-12 h-12" alt="Python Logo">
+        <span class="text-white font-semibold">Python</span>
       </div>
 
       <!-- FastAPI / Flask -->
-      <div class="skill-card bg-slate-800 p-6 rounded-lg flex items-center justify-center gap-2">
-        <i data-feather="server" class="text-indigo-400 skill-icon"></i>
-        FastAPI / Flask
+      <div class="skill-card p-6 rounded-2xl flex flex-col items-center gap-3">
+        <i data-feather="server" class="skill-icon text-indigo-400 w-12 h-12"></i>
+        <span class="text-white font-semibold">FastAPI / Flask</span>
       </div>
 
       <!-- RESTful APIs -->
-      <div class="skill-card bg-slate-800 p-6 rounded-lg flex items-center justify-center gap-2">
-        <i data-feather="cpu" class="text-indigo-400 skill-icon"></i>
-        RESTful APIs
+      <div class="skill-card p-6 rounded-2xl flex flex-col items-center gap-3">
+        <i data-feather="cpu" class="skill-icon text-indigo-400 w-12 h-12"></i>
+        <span class="text-white font-semibold">RESTful APIs</span>
       </div>
 
       <!-- Databases -->
-      <div class="skill-card bg-slate-800 p-6 rounded-lg flex items-center justify-center gap-2">
-        <i data-feather="database" class="text-indigo-400 skill-icon"></i>
-        MySQL / PostgreSQL / SQLite
+      <div class="skill-card p-6 rounded-2xl flex flex-col items-center gap-3">
+        <i data-feather="database" class="skill-icon text-indigo-400 w-12 h-12"></i>
+        <span class="text-white font-semibold">MySQL / PostgreSQL / SQLite</span>
       </div>
 
       <!-- Telegram Bot -->
-      <div class="skill-card bg-slate-800 p-6 rounded-lg flex items-center justify-center gap-2">
-        <i data-feather="send" class="text-indigo-400 skill-icon"></i>
-        Telegram Bot Development
+      <div class="skill-card p-6 rounded-2xl flex flex-col items-center gap-3">
+        <i data-feather="send" class="skill-icon text-indigo-400 w-12 h-12"></i>
+        <span class="text-white font-semibold">Telegram Bot</span>
       </div>
 
       <!-- AI & CV -->
-      <div class="skill-card bg-slate-800 p-6 rounded-lg flex items-center justify-center gap-2">
-        <i data-feather="eye" class="text-indigo-400 skill-icon"></i>
-        AI & Computer Vision
+      <div class="skill-card p-6 rounded-2xl flex flex-col items-center gap-3">
+        <i data-feather="eye" class="skill-icon text-indigo-400 w-12 h-12"></i>
+        <span class="text-white font-semibold">AI & Computer Vision</span>
       </div>
 
       <!-- PyQt6 -->
-      <div class="skill-card bg-slate-800 p-6 rounded-lg flex items-center justify-center gap-2">
-        <i data-feather="monitor" class="text-indigo-400 skill-icon"></i>
-        PyQt6 Desktop Apps
+      <div class="skill-card p-6 rounded-2xl flex flex-col items-center gap-3">
+        <i data-feather="monitor" class="skill-icon text-indigo-400 w-12 h-12"></i>
+        <span class="text-white font-semibold">PyQt6 Desktop Apps</span>
       </div>
 
       <!-- Git & GitHub -->
-      <div class="skill-card bg-slate-800 p-6 rounded-lg flex items-center justify-center gap-2">
-        <i data-feather="git-branch" class="text-indigo-400 skill-icon"></i>
-        Git & GitHub
+      <div class="skill-card p-6 rounded-2xl flex flex-col items-center gap-3">
+        <i data-feather="git-branch" class="skill-icon text-indigo-400 w-12 h-12"></i>
+        <span class="text-white font-semibold">Git & GitHub</span>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ================= CSS for Hover Glow ================= -->
 <style>
+  /* Skill Cards Lux */
   .skill-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(145deg, rgba(30,41,59,0.7), rgba(17,24,39,0.7));
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(79,70,229,0.2);
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
     cursor: pointer;
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    padding: 1.5rem;
+  }
+
+  .skill-card.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 
   .skill-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.4); /* Indigo glow */
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 25px 40px rgba(79,70,229,0.5);
+    background: linear-gradient(145deg, rgba(79,70,229,0.2), rgba(55,48,163,0.2));
   }
 
   .skill-icon {
-    transition: transform 0.3s ease, color 0.3s ease;
+    transition: transform 0.4s ease, filter 0.4s ease, color 0.4s ease;
   }
 
   .skill-card:hover .skill-icon {
-    transform: scale(1.2);
-    color: #818cf8; /* Slightly brighter Indigo */
+    transform: scale(1.4);
+    color: #818cf8;
+    filter: brightness(1.2) saturate(120%);
   }
-
-  .skill-card img.skill-icon {
-  filter: brightness(0) saturate(100%) invert(40%) sepia(85%) saturate(500%) hue-rotate(225deg);
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.skill-card:hover img.skill-icon {
-  transform: scale(1.2);
-  filter: brightness(1.2) saturate(120%) invert(40%) sepia(85%) saturate(500%) hue-rotate(225deg);
-}
-
 </style>
 
-<!-- ================= PROJECTS ================= -->
+<script>
+  // Feather icons
+  feather.replace();
+
+  // Scroll observer برای fade-in Skill cards
+  const skillCards = document.querySelectorAll('.skill-card');
+  const skillObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  skillCards.forEach(card => skillObserver.observe(card));
+</script>
+
+<!-- ================= PROJECTS (Lux) ================= -->
 <section id="projects" class="fade-section py-24 bg-slate-800">
   <div class="max-w-6xl mx-auto px-6">
     <h3 class="text-3xl font-bold text-white text-center mb-12">Projects</h3>
     <div class="grid md:grid-cols-3 gap-8">
-      <div class="bg-slate-900 p-6 rounded-lg">
-        <h4 class="text-xl font-semibold mb-2">Assignment Manager Platform</h4>
-        <p class="text-gray-400 mb-4">
-          A student-level assignment management system featuring a REST API,
-          Telegram bot integration, and role-based user management.
-        </p>
+
+      <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
+        <h4 class="text-xl font-semibold mb-2 text-white">Assignment Manager Platform</h4>
+        <p class="text-gray-300">A student-level assignment management system featuring a REST API, Telegram bot integration, and role-based user management.</p>
       </div>
-      <div class="bg-slate-900 p-6 rounded-lg">
-        <h4 class="text-xl font-semibold mb-2">Smart Identity Access Platform</h4>
-        <p class="text-gray-400 mb-4">
-          An intelligent authentication platform combining face recognition,
-          secure access control, and identity verification workflows.
-        </p>
+
+      <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
+        <h4 class="text-xl font-semibold mb-2 text-white">Smart Identity Access Platform</h4>
+        <p class="text-gray-300">An intelligent authentication platform combining face recognition, secure access control, and identity verification workflows.</p>
       </div>
-      <div class="bg-slate-900 p-6 rounded-lg">
-        <h4 class="text-xl font-semibold mb-2">FaceSense AI</h4>
-        <p class="text-gray-400 mb-4">
-          A real-time desktop application for face analysis, including face mesh visualization,
-          emotion detection, and face recognition.
-        </p>
+
+      <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
+        <h4 class="text-xl font-semibold mb-2 text-white">FaceSense AI</h4>
+        <p class="text-gray-300">A real-time desktop application for face analysis, including face mesh visualization, emotion detection, and face recognition.</p>
       </div>
+
     </div>
   </div>
 </section>
+
+<style>
+  /* Project Cards Lux */
+  .project-card {
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+  }
+
+  .project-card.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .project-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(79,70,229,0.5);
+    background: linear-gradient(145deg, rgba(79,70,229,0.2), rgba(55,48,163,0.2));
+  }
+</style>
+
+<script>
+  // Scroll observer برای fade-in Project cards
+  const projectCards = document.querySelectorAll('.project-card');
+  const projectObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  projectCards.forEach(card => projectObserver.observe(card));
+</script>
 
 <!-- ================= CONTACT ================= -->
 <section id="contact" class="fade-section py-24">
