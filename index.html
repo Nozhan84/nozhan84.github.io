@@ -665,6 +665,134 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<style>
+  /* ===== GitHub Button inside modal ===== */
+  .github-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #8b5cf6;
+    border-radius: 0.75rem;
+    color: #8b5cf6;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  .github-btn:hover {
+    background: linear-gradient(90deg, rgba(139,92,246,0.2), rgba(139,92,246,0.4));
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(139,92,246,0.5);
+    color: #fff;
+  }
+  .github-btn i {
+    width: 20px;
+    height: 20px;
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const projectCards = document.querySelectorAll('.project-card');
+  const slider = document.querySelector('.projects-wrapper');
+  const track = document.querySelector('.projects-track');
+  const projectsGrid = document.getElementById('projectsGrid');
+  const viewAllBtn = document.getElementById('viewAllBtn');
+  const backToSliderBtn = document.getElementById('backToSliderBtn');
+
+  // --- Modal creation with GitHub button ---
+  const modal = document.createElement('div');
+  modal.classList.add('project-modal');
+  modal.innerHTML = `
+    <div class="project-modal-content">
+      <span class="modal-close">&times;</span>
+      <h4></h4>
+      <p></p>
+      <a href="#" target="_blank" class="github-btn">
+        <i data-feather="github"></i> View in GitHub
+      </a>
+    </div>`;
+  document.body.appendChild(modal);
+
+  const modalTitle = modal.querySelector('h4');
+  const modalDesc = modal.querySelector('p');
+  const modalClose = modal.querySelector('.modal-close');
+  const githubBtn = modal.querySelector('.github-btn');
+
+  modalClose.addEventListener('click', () => modal.classList.remove('active'));
+  modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('active'); });
+
+  // ===== View All logic (اضافه کردن GitHub لینک بدون تغییر چیزی) =====
+  viewAllBtn.addEventListener('click', () => {
+    slider.style.display = 'none';
+    track.style.animationPlayState = 'paused';
+    projectsGrid.innerHTML = '';
+
+    projectCards.forEach((card, index) => {
+      const title = card.querySelector('h4').textContent;
+      const desc = card.querySelector('p').textContent;
+
+      const gridCard = document.createElement('div');
+      gridCard.classList.add('grid-card');
+      gridCard.textContent = title;
+      gridCard.dataset.title = title;
+      gridCard.dataset.desc = desc;
+
+      // example GitHub link (می‌تونی هر پروژه لینک جدا بذاری)
+      gridCard.dataset.github = "https://github.com/Nozhan84"; 
+      // لینک GitHub مخصوص هر پروژه
+      if(title === "Assignment Manager Platform") {
+        gridCard.dataset.github = "https://github.com/Nozhan84/assignment-manager";
+      } else if(title === "Smart Identity Access Platform") {
+        gridCard.dataset.github = "https://github.com/Nozhan84/smart-identity";
+      } else if(title === "FaceSense AI") {
+        gridCard.dataset.github = "https://github.com/Nozhan84/facesense-ai";
+      } else {
+        gridCard.dataset.github = "https://github.com/Nozhan84"; // لینک پیش‌فرض
+      }
+
+      // Fade-in effect
+      gridCard.style.opacity = 0;
+      gridCard.style.transform = 'translateY(20px)';
+      gridCard.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      setTimeout(() => {
+        gridCard.style.opacity = 1;
+        gridCard.style.transform = 'translateY(0)';
+      }, index * 150);
+
+      // Hover zoom
+      gridCard.addEventListener('mouseenter', () => {
+        gridCard.style.transform = 'scale(1.05)';
+        gridCard.style.transition = 'transform 0.3s ease';
+      });
+      gridCard.addEventListener('mouseleave', () => {
+        gridCard.style.transform = 'translateY(0) scale(1)';
+        gridCard.style.transition = 'transform 0.3s ease';
+      });
+
+      // modal event with GitHub button
+      gridCard.addEventListener('click', () => {
+        modalTitle.textContent = gridCard.dataset.title;
+        modalDesc.textContent = gridCard.dataset.desc;
+
+        // لینک GitHub هر پروژه
+        githubBtn.href = gridCard.dataset.github;
+
+        feather.replace({ "class": "github-icon" }); // رندر آیکون
+        modal.classList.add('active');
+      });
+
+      projectsGrid.appendChild(gridCard);
+    });
+
+    projectsGrid.classList.remove('hidden');
+    viewAllBtn.style.display = 'none';
+    backToSliderBtn.classList.remove('hidden');
+  });
+});
+</script>
+
 <!-- ================= CONTACT ================= -->
 <section id="contact" class="fade-section py-24">
   <div class="max-w-4xl mx-auto px-6 text-center">
