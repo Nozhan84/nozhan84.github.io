@@ -338,10 +338,36 @@
   <div class="max-w-6xl mx-auto px-6">
     <h3 class="text-3xl font-bold text-white text-center mb-12">Projects</h3>
 
-    <!-- WRAPPER (فقط اضافه شده) -->
+    <!-- WRAPPER -->
     <div class="projects-wrapper">
       <div class="projects-track flex gap-8">
 
+        <!-- Original Cards -->
+        <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
+          <h4 class="text-xl font-semibold mb-2 text-white">Assignment Manager Platform</h4>
+          <p class="text-gray-300">
+            A student-level assignment management system featuring a REST API,
+            Telegram bot integration, and role-based user management.
+          </p>
+        </div>
+
+        <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
+          <h4 class="text-xl font-semibold mb-2 text-white">Smart Identity Access Platform</h4>
+          <p class="text-gray-300">
+            An intelligent authentication platform combining face recognition,
+            secure access control, and identity verification workflows.
+          </p>
+        </div>
+
+        <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
+          <h4 class="text-xl font-semibold mb-2 text-white">FaceSense AI</h4>
+          <p class="text-gray-300">
+            A real-time desktop application for face analysis, including face mesh
+            visualization, emotion detection, and face recognition.
+          </p>
+        </div>
+
+        <!-- Duplicate Cards for seamless loop -->
         <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
           <h4 class="text-xl font-semibold mb-2 text-white">Assignment Manager Platform</h4>
           <p class="text-gray-300">
@@ -375,13 +401,15 @@
   /* ================= Project Cards Lux ================= */
   .project-card {
     width: 320px;
-    min-height: 320px; /* مربع و بزرگ مثل قبل */
+    min-height: 320px;
     transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
     opacity: 0;
     transform: translateY(30px) scale(0.95);
     cursor: pointer;
     backdrop-filter: blur(5px);
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
   }
 
   .project-card.visible {
@@ -412,10 +440,6 @@
     animation: scrollProjects 40s linear infinite;
   }
 
-  .projects-wrapper:hover .projects-track {
-    animation-play-state: paused;
-  }
-
   @keyframes scrollProjects {
     from {
       transform: translateX(0);
@@ -427,7 +451,7 @@
 </style>
 
 <script>
-  /* Fade-in observer (بدون تغییر) */
+  /* Fade-in observer */
   const projectCards = document.querySelectorAll('.project-card');
   const projectObserver = new IntersectionObserver(
     entries => {
@@ -439,15 +463,21 @@
     },
     { threshold: 0.2 }
   );
-
   projectCards.forEach(card => projectObserver.observe(card));
-</script>
 
-<script>
-  /* Drag + pause/resume (اصلاح‌شده، بدون تداخل با animation) */
+  /* Slider Pause/Resume on Hover */
   const slider = document.querySelector('.projects-wrapper');
   const track = document.querySelector('.projects-track');
 
+  slider.addEventListener('mouseenter', () => {
+    track.style.animationPlayState = 'paused';
+  });
+
+  slider.addEventListener('mouseleave', () => {
+    track.style.animationPlayState = 'running';
+  });
+
+  /* Dragging Support */
   let isDown = false;
   let startX;
   let currentTranslate = 0;
