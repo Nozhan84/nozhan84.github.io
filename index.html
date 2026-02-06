@@ -122,18 +122,95 @@
 <section id="skills" class="fade-section py-24">
   <div class="max-w-6xl mx-auto px-6">
     <h3 class="text-3xl font-bold text-white text-center mb-12">Skills</h3>
+
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-      <div class="bg-slate-800 p-6 rounded-lg">Python</div>
-      <div class="bg-slate-800 p-6 rounded-lg">FastAPI / Flask</div>
-      <div class="bg-slate-800 p-6 rounded-lg">RESTful APIs</div>
-      <div class="bg-slate-800 p-6 rounded-lg">MySQL / PostgreSQL / SQLite</div>
-      <div class="bg-slate-800 p-6 rounded-lg">Telegram Bot Development</div>
-      <div class="bg-slate-800 p-6 rounded-lg">AI & Computer Vision</div>
-      <div class="bg-slate-800 p-6 rounded-lg">PyQt6 Desktop Apps</div>
-      <div class="bg-slate-800 p-6 rounded-lg">Git & GitHub</div>
+
+      <!-- Python (with Devicon SVG) -->
+      <div class="skill-card bg-slate-800 p-6 rounded-lg flex items-center justify-center gap-2">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+            class="w-6 h-6 skill-icon"
+            alt="Python Logo">
+        Python
+      </div>
+
+      <!-- FastAPI / Flask -->
+      <div class="skill-card bg-slate-800 p-6 rounded-lg flex items-center justify-center gap-2">
+        <i data-feather="server" class="text-indigo-400 skill-icon"></i>
+        FastAPI / Flask
+      </div>
+
+      <!-- RESTful APIs -->
+      <div class="skill-card bg-slate-800 p-6 rounded-lg flex items-center justify-center gap-2">
+        <i data-feather="cpu" class="text-indigo-400 skill-icon"></i>
+        RESTful APIs
+      </div>
+
+      <!-- Databases -->
+      <div class="skill-card bg-slate-800 p-6 rounded-lg flex items-center justify-center gap-2">
+        <i data-feather="database" class="text-indigo-400 skill-icon"></i>
+        MySQL / PostgreSQL / SQLite
+      </div>
+
+      <!-- Telegram Bot -->
+      <div class="skill-card bg-slate-800 p-6 rounded-lg flex items-center justify-center gap-2">
+        <i data-feather="send" class="text-indigo-400 skill-icon"></i>
+        Telegram Bot Development
+      </div>
+
+      <!-- AI & CV -->
+      <div class="skill-card bg-slate-800 p-6 rounded-lg flex items-center justify-center gap-2">
+        <i data-feather="eye" class="text-indigo-400 skill-icon"></i>
+        AI & Computer Vision
+      </div>
+
+      <!-- PyQt6 -->
+      <div class="skill-card bg-slate-800 p-6 rounded-lg flex items-center justify-center gap-2">
+        <i data-feather="monitor" class="text-indigo-400 skill-icon"></i>
+        PyQt6 Desktop Apps
+      </div>
+
+      <!-- Git & GitHub -->
+      <div class="skill-card bg-slate-800 p-6 rounded-lg flex items-center justify-center gap-2">
+        <i data-feather="git-branch" class="text-indigo-400 skill-icon"></i>
+        Git & GitHub
+      </div>
+
     </div>
   </div>
 </section>
+
+<!-- ================= CSS for Hover Glow ================= -->
+<style>
+  .skill-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.4); /* Indigo glow */
+  }
+
+  .skill-icon {
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .skill-card:hover .skill-icon {
+    transform: scale(1.2);
+    color: #818cf8; /* Slightly brighter Indigo */
+  }
+
+  .skill-card img.skill-icon {
+  filter: brightness(0) saturate(100%) invert(40%) sepia(85%) saturate(500%) hue-rotate(225deg);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.skill-card:hover img.skill-icon {
+  transform: scale(1.2);
+  filter: brightness(1.2) saturate(120%) invert(40%) sepia(85%) saturate(500%) hue-rotate(225deg);
+}
+
+</style>
 
 <!-- ================= PROJECTS ================= -->
 <section id="projects" class="fade-section py-24 bg-slate-800">
