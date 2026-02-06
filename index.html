@@ -525,6 +525,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.2 });
   projectCards.forEach(card => projectObserver.observe(card));
 
+  // ===== Hover zoom effect روی کارت‌های Slider =====
+projectCards.forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    card.style.transform = 'translateY(-10px) scale(1.03)';
+    card.style.transition = 'transform 0.3s ease';
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'translateY(0) scale(1)';
+    card.style.transition = 'transform 0.3s ease';
+  });
+  });
+
   // Pause/Resume slider
   slider.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
   slider.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
@@ -627,20 +639,22 @@ document.addEventListener('DOMContentLoaded', () => {
   backToSliderBtn.addEventListener('click', () => {
     projectsGrid.classList.add('hidden');
 
+    // آماده‌سازی Slider برای fade-in
     slider.style.display = 'flex';
-    track.style.animationPlayState = 'paused'; // start paused to animate
+    track.style.animationPlayState = 'paused';
 
     projectCards.forEach((card, index) => {
       card.style.opacity = 0;
       card.style.transform = 'translateY(20px)';
       card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+
       setTimeout(() => {
         card.style.opacity = 1;
         card.style.transform = 'translateY(0)';
       }, index * 150);
     });
 
-    // restart animation after fade-in
+    // بعد از تمام انیمیشن‌ها، انیمیشن Slider دوباره شروع می‌شه
     setTimeout(() => {
       track.style.animationPlayState = 'running';
     }, projectCards.length * 150 + 200);
@@ -685,3 +699,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 </html>
 
+
+
+projectCards.forEach(card => projectObserver.observe(card));
