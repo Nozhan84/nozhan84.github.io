@@ -577,6 +577,169 @@
   .grid-card {
     z-index: 1;
   }
+
+/* ================= PROJECTS → SAME AS SKILLS ================= */
+
+/* ---- Buttons (View All / Back) ---- */
+  .project-btn {
+    background: linear-gradient(
+      145deg,
+      rgba(30,41,59,0.7),
+      rgba(17,24,39,0.7)
+    );
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(79,70,229,0.25);
+    color: #c7d2fe;
+    transition:
+      transform 0.45s ease,
+      box-shadow 0.45s ease,
+      background 0.45s ease;
+  }
+
+  .project-btn:hover {
+    transform: translateY(-6px) scale(1.08);
+    box-shadow: 0 25px 40px rgba(79,70,229,0.55);
+    background: linear-gradient(
+      145deg,
+      rgba(79,70,229,0.25),
+      rgba(55,48,163,0.25)
+    );
+  }
+
+  /* ---- Grid Project Names (View All) ---- */
+  .grid-card {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition:
+      transform 0.45s ease,
+      box-shadow 0.45s ease,
+      background 0.45s ease,
+      color 0.4s ease;
+  }
+
+  .grid-card:hover {
+    transform: translateY(-10px) scale(1.08);
+    background: linear-gradient(
+      145deg,
+      rgba(79,70,229,0.25),
+      rgba(55,48,163,0.25)
+    );
+    box-shadow:
+      0 25px 40px rgba(79,70,229,0.55),
+      0 0 40px rgba(139,92,246,0.35);
+    color: #e0e7ff;
+}
+
+/* ---- Micro text animation ---- */
+  .project-btn,
+  .grid-card {
+    text-shadow: none;
+  }
+
+  .project-btn:hover,
+  .grid-card:hover {
+    text-shadow:
+      0 2px 10px rgba(139,92,246,0.45),
+      0 0 20px rgba(79,70,229,0.35);
+  }
+/* ---- Luxury ripple light ---- */
+  .project-btn::before,
+  .grid-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(255,255,255,0.15),
+      transparent 80%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.9s ease;
+    pointer-events: none;
+  }
+
+  .project-btn:hover::before,
+  .grid-card:hover::after {
+    transform: translateX(120%);
+  }
+
+/* ---- Staggered hover timing ---- */
+  .project-btn {
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.45s ease 0.05s,
+      background 0.45s ease 0.05s,
+      color 0.3s ease;
+  }
+
+  .grid-card {
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.45s ease 0.08s,
+      background 0.45s ease 0.08s,
+      color 0.3s ease;
+  }
+
+  /* ===== REAL micro text lift (no HTML change) ===== */
+.grid-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-card > * {
+  transition:
+    transform 0.35s ease,
+    text-shadow 0.35s ease,
+    letter-spacing 0.35s ease;
+}
+
+.grid-card:hover > * {
+  transform: translateY(-6px);
+  letter-spacing: 0.6px;
+  text-shadow:
+    0 4px 12px rgba(139,92,246,0.55),
+    0 0 22px rgba(79,70,229,0.4);
+}
+
+/* ---- Fix ripple visibility ---- */
+.grid-card::after {
+  z-index: 0;
+}
+
+.grid-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== Human stagger ===== */
+.grid-card {
+  transition: background 0.45s ease;
+}
+
+.grid-card:hover {
+  transition-delay: 0s;
+}
+
+.grid-card:hover > * {
+  transition-delay: 0.08s;
+}
+
+.grid-card > span {
+  position: relative; /* تا z-index اعمال شه */
+  z-index: 2;         /* روی ripple */
+  display: inline-block;
+  transition: transform 0.35s ease, text-shadow 0.35s ease, letter-spacing 0.35s ease;
+}
+
+.grid-card:hover > span {
+  transform: translateY(-6px);
+  letter-spacing: 0.6px;
+  text-shadow:
+    0 4px 12px rgba(139,92,246,0.55),
+    0 0 22px rgba(79,70,229,0.4);
+}
 </style>
 
 
@@ -683,7 +846,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     projectCards.forEach((card, i) => {
       const g = document.createElement('div');
       g.className = 'grid-card';
-      g.textContent = card.dataset.title;
+      g.innerHTML = `<span>${card.dataset.title}</span>`;
 
       Object.assign(g.dataset, card.dataset);
 
@@ -760,3 +923,5 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 <a class="github-btn mt-4" target="_blank">View on GitHub</a>
+
+g.textContent = card.dataset.title;
