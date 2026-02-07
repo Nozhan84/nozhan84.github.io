@@ -787,25 +787,28 @@ document.addEventListener('DOMContentLoaded', async () => {
   const projects = await res.json();
 
   /* ================= BUILD SLIDER ================= */
-  projects.forEach(p => {
-    const card = document.createElement('div');
-    card.className =
-      'project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg';
+    projects.forEach(p => {
+      const card = document.createElement('div');
+      card.className =
+        'project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg';
 
-    card.innerHTML = `
-      <h4 class="text-xl font-semibold mb-2 text-white">${p.title}</h4>
-      <p class="text-gray-300">${p.description}</p>
-    `;
+      card.innerHTML = `
+        <h4 class="text-xl font-semibold mb-2 text-white">${p.title}</h4>
+        <p class="text-gray-300">${p.description}</p>
+      `;
 
-    card.dataset.title = p.title;
-    card.dataset.subtitle = p.subtitle;
-    card.dataset.desc = p.description;
-    card.dataset.built = p.built_with;
-    card.dataset.focus = p.focus;
-    card.dataset.github = p.github;
+      card.dataset.title = p.title;
+      card.dataset.subtitle = p.subtitle;
+      card.dataset.desc = p.description;
+      card.dataset.built = p.built_with;
+      card.dataset.focus = p.focus;
+      card.dataset.github = p.github;
 
-    track.appendChild(card);
+      track.appendChild(card);
   });
+
+  // 🌀 این خط باعث میشه کارت‌ها loop بشن و فاصله نباشه
+  track.innerHTML += track.innerHTML;
 
   const projectCards = document.querySelectorAll('.project-card');
 
