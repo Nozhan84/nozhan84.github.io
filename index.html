@@ -881,6 +881,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     slider.style.display = 'flex';
     viewAllBtn.style.display = 'inline-block';
     backToSliderBtn.classList.add('hidden');
+
+    // لوکس و smooth animation برای کارت‌ها
+    projectCards.forEach((card, i) => {
+      card.style.opacity = 0;
+      card.style.transform = 'translateY(30px) scale(0.95)';
+      card.style.transition = 'all 0.5s ease';
+
+      setTimeout(() => {
+        card.style.opacity = 1;
+        card.style.transform = 'translateY(0) scale(1)';
+      }, i * 120); // هر کارت با 120ms فاصله ظاهر میشه
+    });
   };
 });
 </script>
