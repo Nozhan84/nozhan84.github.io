@@ -481,6 +481,36 @@
     transition: all 0.5s ease;
   }
   .project-btn:hover::after { left: 100%; }
+
+  <style>
+  /* ===== GitHub Button in Modal ===== */
+  .github-btn {
+    margin-top: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    color: #e5e7eb;
+    background: linear-gradient(145deg, rgba(36,41,46,0.9), rgba(17,24,39,0.9));
+    border: 1px solid rgba(148,163,184,0.2);
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .github-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  .github-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: linear-gradient(145deg, rgba(79,70,229,0.25), rgba(55,48,163,0.25));
+    box-shadow: 0 12px 30px rgba(79,70,229,0.6);
+    color: #a5b4fc;
+  }
 </style>
 
 <script>
