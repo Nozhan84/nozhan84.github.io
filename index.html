@@ -763,7 +763,19 @@ document.addEventListener('DOMContentLoaded', () => {
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+
+  /* ===============================
+     Load projects.json (ONLY DATA)
+  =============================== */
+  let projectsData = [];
+  try {
+    const res = await fetch('./projects.json');
+    projectsData = await res.json();
+  } catch (err) {
+    console.error('Failed to load projects.json', err);
+  }
+
   const projectCards = document.querySelectorAll('.project-card');
   const slider = document.querySelector('.projects-wrapper');
   const track = document.querySelector('.projects-track');
@@ -771,7 +783,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const viewAllBtn = document.getElementById('viewAllBtn');
   const backToSliderBtn = document.getElementById('backToSliderBtn');
 
-  // --- Modal creation with GitHub button ---
+  /* ===============================
+     Bind JSON data to slider cards
+     (NO UI CHANGE)
+  =============================== */
+  projectCards.forEach((card, index) => {
+    const project = projectsData[index];
+    if (!project) return;
+
+    card.querySelector('h4').textContent = project.title;
+    card.querySelector('p').textContent = project.description;
+
+    card.dataset.title = project.title;
+    card.dataset.desc = project.description;
+    card.dataset.built = project.built_with;
+    card.dataset.focus = project.focus;
+    card.dataset.github = project.github;
+  });
+
+  /* ===============================
+     Modal creation (UNCHANGED)
+  =============================== */
   const modal = document.createElement('div');
   modal.classList.add('project-modal');
   modal.innerHTML = `
@@ -779,7 +811,6 @@ document.addEventListener('DOMContentLoaded', () => {
       <span class="modal-close">&times;</span>
       <h4></h4>
       <p></p>
-
       <a class="github-btn" target="_blank">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 
@@ -816,38 +847,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const githubBtn = modal.querySelector('.github-btn');
 
   modalClose.addEventListener('click', () => modal.classList.remove('active'));
-  modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('active'); });
+  modal.addEventListener('click', e => {
+    if (e.target === modal) modal.classList.remove('active');
+  });
 
-  // ===== View All logic (اضافه کردن GitHub لینک بدون تغییر چیزی) =====
+  /* ===============================
+     View All (DATA FROM JSON)
+     NO LOGIC / UI CHANGE
+  =============================== */
   viewAllBtn.addEventListener('click', () => {
     slider.style.display = 'none';
     track.style.animationPlayState = 'paused';
     projectsGrid.innerHTML = '';
 
-    projectCards.forEach((card, index) => {
-      const title = card.querySelector('h4').textContent;
-      const desc = card.querySelector('p').textContent;
-
+    projectsData.forEach((project, index) => {
       const gridCard = document.createElement('div');
       gridCard.classList.add('grid-card');
-      gridCard.textContent = title;
-      gridCard.dataset.title = title;
-      gridCard.dataset.desc = desc;
+      gridCard.textContent = project.title;
 
-      // example GitHub link (می‌تونی هر پروژه لینک جدا بذاری)
-      gridCard.dataset.github = "https://github.com/Nozhan84"; 
-      // لینک GitHub مخصوص هر پروژه
-      if(title === "Assignment Manager Platform") {
-        gridCard.dataset.github = "https://github.com/Nozhan84/assignment-manager";
-      } else if(title === "Smart Identity Access Platform") {
-        gridCard.dataset.github = "https://github.com/Nozhan84/smart-identity";
-      } else if(title === "FaceSense AI") {
-        gridCard.dataset.github = "https://github.com/Nozhan84/facesense-ai";
-      } else {
-        gridCard.dataset.github = "https://github.com/Nozhan84"; // لینک پیش‌فرض
-      }
+      gridCard.dataset.title = project.title;
+      gridCard.dataset.desc = project.description;
+      gridCard.dataset.built = project.built_with;
+      gridCard.dataset.focus = project.focus;
+      gridCard.dataset.github = project.github;
 
-      // Fade-in effect
+      // Fade-in
       gridCard.style.opacity = 0;
       gridCard.style.transform = 'translateY(20px)';
       gridCard.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -859,23 +883,20 @@ document.addEventListener('DOMContentLoaded', () => {
       // Hover zoom
       gridCard.addEventListener('mouseenter', () => {
         gridCard.style.transform = 'scale(1.05)';
-        gridCard.style.transition = 'transform 0.3s ease';
       });
       gridCard.addEventListener('mouseleave', () => {
-        gridCard.style.transform = 'translateY(0) scale(1)';
-        gridCard.style.transition = 'transform 0.3s ease';
+        gridCard.style.transform = 'scale(1)';
       });
 
-      // modal event with GitHub button
+      // Modal open
       gridCard.addEventListener('click', () => {
-        modalTitle.textContent = gridCard.dataset.title;
-        modalDesc.textContent = gridCard.dataset.desc;
-        modal.querySelector('.github-btn').href = gridCard.dataset.github;
-
-        // لینک GitHub هر پروژه
-        githubBtn.href = gridCard.dataset.github;
-
-        feather.replace({ "class": "github-icon" }); // رندر آیکون
+        modalTitle.textContent = project.title;
+        modalDesc.innerHTML = `
+          ${project.description}<br><br>
+          <strong>Built with:</strong> ${project.built_with}<br>
+          <strong>Focus:</strong> ${project.focus}
+        `;
+        githubBtn.href = project.github;
         modal.classList.add('active');
       });
 
@@ -886,6 +907,7 @@ document.addEventListener('DOMContentLoaded', () => {
     viewAllBtn.style.display = 'none';
     backToSliderBtn.classList.remove('hidden');
   });
+
 });
 </script>
 
@@ -924,5 +946,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </html>
 
 
-
-modalDesc.textContent = gridCard.dataset.desc;
+card.querySelector('h4').textContent

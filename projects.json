@@ -1,0 +1,42 @@
+[
+  {
+    "title": "VoxScript",
+    "subtitle": "Real-time Audio Transcription App",
+    "description": "A real-time voice-to-text desktop application powered by Whisper AI, featuring multi-language support, live progress tracking, and automatic transcription saving with a modern PyQt6 interface.",
+    "built_with": "Python · PyQt6 · Whisper AI · Torch",
+    "focus": "Speech Recognition · UX · Automation",
+    "github": "https://github.com/Nozhan84/VoxScript"
+  },
+  {
+    "title": "MagicVolumeCam",
+    "subtitle": "Gesture-Based Volume Controller",
+    "description": "A computer vision application that allows users to control music volume using hand gestures in real-time, combining MediaPipe hand tracking with a modern PyQt6 GUI and Pygame audio control.",
+    "built_with": "Python · OpenCV · MediaPipe · PyQt6 · Pygame",
+    "focus": "Computer Vision · Real-time Interaction · Human-Computer Interface",
+    "github": "https://github.com/Nozhan84/MagicVolumeCam"
+  },
+  {
+    "title": "FaceSense AI",
+    "subtitle": "Real-Time Face Analysis System",
+    "description": "A real-time face analysis desktop application featuring face mesh visualization, emotion detection, and face recognition using MediaPipe and DeepFace within a PyQt6-based interface.",
+    "built_with": "Python · MediaPipe · DeepFace · OpenCV · PyQt6",
+    "focus": "Computer Vision · Emotion Analysis · Performance",
+    "github": "https://github.com/Nozhan84/facesense-ai"
+  },
+  {
+    "title": "Assignment Manager",
+    "subtitle": "Student Assignment Management Platform",
+    "description": "A full-stack student assignment management system featuring a Flask REST API, Telegram bot integration, and a web-based dashboard for managing assignments and file uploads.",
+    "built_with": "Python · Flask · MySQL · Telegram Bot API · HTML/CSS/JS",
+    "focus": "Backend Systems · API Design · Automation",
+    "github": "https://github.com/Nozhan84/assignment_manager_1"
+  },
+  {
+    "title": "ShadowGate",
+    "subtitle": "Offline Survival Toolkit for Restricted Internet",
+    "description": "A local-first survival toolkit designed for restricted or offline internet environments, combining a Telegram bot, proxy management, automation scripts, and an offline-friendly architecture.",
+    "built_with": "Python · SQLite · Telegram Bot API · PowerShell · Batch",
+    "focus": "Offline-First Systems · Automation · Resilience",
+    "github": "https://github.com/YourUsername/ShadowGate"
+  }
+]
