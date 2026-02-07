@@ -48,6 +48,9 @@
 
 <body class="bg-slate-900 text-gray-200">
 
+
+
+
 <!-- ================= NAVBAR ================= -->
 <nav class="fixed top-0 w-full bg-slate-900/80 backdrop-blur border-b border-slate-800 z-50">
   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -846,20 +849,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     slider.style.display = 'none';
     projectsGrid.innerHTML = '';
 
-    projectCards.forEach((card, i) => {
+    projects.forEach((p, i) => {
       const g = document.createElement('div');
       g.className = 'grid-card';
-      g.innerHTML = `<span>${card.dataset.title}</span>`;
+      g.innerHTML = `<span>${p.title}</span>`;
 
-      Object.assign(g.dataset, card.dataset);
+      // داده‌ها
+      g.dataset.title = p.title;
+      g.dataset.subtitle = p.subtitle;
+      g.dataset.desc = p.description;
+      g.dataset.built = p.built_with;
+      g.dataset.focus = p.focus;
+      g.dataset.github = p.github;
 
+      // 💖 انیمیشن staggered ورود دونه‌دونه
       g.style.opacity = 0;
       g.style.transform = 'translateY(20px)';
       g.style.transition = 'all 0.5s ease';
       setTimeout(() => {
         g.style.opacity = 1;
         g.style.transform = 'translateY(0)';
-      }, i * 120);
+      }, i * 120); // فاصله 120ms بین کارت‌ها
 
       g.onclick = () => {
         modalTitle.textContent = g.dataset.title;
@@ -873,7 +883,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       projectsGrid.appendChild(g);
     });
-
+    
     projectsGrid.classList.remove('hidden');
     viewAllBtn.style.display = 'none';
     backToSliderBtn.classList.remove('hidden');
@@ -931,6 +941,51 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   sections.forEach(section => observer.observe(section));
 </script>
+
+
+
+
+<!-- Back to Top Button -->
+  <button id="backToTop" class="fixed bottom-6 right-6 bg-indigo-500 hover:bg-indigo-600 text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 z-50">
+    ↑
+  </button>
+
+<style>
+#backToTop {
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease, opacity 0.3s ease;
+}
+
+#backToTop:hover {
+  transform: scale(1.2);
+  background: #6366f1; /* رنگ slightly روشن‌تر روی hover */
+}
+</style>
+
+<script>
+  const backToTopBtn = document.getElementById('backToTop');
+
+// نمایش دکمه وقتی صفحه اسکرول شد
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+    backToTopBtn.classList.add('opacity-100', 'pointer-events-auto');
+  } else {
+    backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+    backToTopBtn.classList.remove('opacity-100', 'pointer-events-auto');
+  }
+});
+
+// اسکرول smooth به بالا وقتی کلیک شد
+backToTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+
 
 </body>
 </html>
