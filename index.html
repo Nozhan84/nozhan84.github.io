@@ -70,8 +70,8 @@
   <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
 
     <div>
-      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
-        Hi, I'm <span class="text-indigo-400">Nozhan Nazari</span>
+      <h2 class="text-3xl md:text-5xl font-bold mb-4">
+        Hi, I'm <span class="gradient-text">Nozhan Nazari</span>
       </h2>
       <p class="text-xl text-gray-400 mb-6">
         Python Developer | Backend, AI & Automation
@@ -106,6 +106,24 @@
 
   </div>
 </section>
+
+<style>
+.gradient-text {
+    background: linear-gradient(90deg, #6366f1, #8b5cf6, #a78bfa);
+    background-size: 200% 200%;
+    background-clip: text;           /* اضافه شد */
+    -webkit-background-clip: text;   /* برای Chrome/Safari */
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 4s linear infinite;
+}
+
+  @keyframes gradientMove {
+    0% { background-position: 0% }
+    50% { background-position: 100% }
+    100% { background-position: 0% }
+  }
+</style>
+
 
 <!-- ================= ABOUT ================= -->
 <section id="about" class="fade-section py-24 bg-slate-800">
