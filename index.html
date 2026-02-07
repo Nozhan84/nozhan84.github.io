@@ -350,31 +350,6 @@
     <div class="projects-wrapper">
       <div class="projects-track flex gap-8">
 
-        <!-- Original Cards -->
-        <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
-          <h4 class="text-xl font-semibold mb-2 text-white">Assignment Manager Platform</h4>
-          <p class="text-gray-300">
-            A student-level assignment management system featuring a REST API,
-            Telegram bot integration, and role-based user management.
-          </p>
-        </div>
-
-        <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
-          <h4 class="text-xl font-semibold mb-2 text-white">Smart Identity Access Platform</h4>
-          <p class="text-gray-300">
-            An intelligent authentication platform combining face recognition,
-            secure access control, and identity verification workflows.
-          </p>
-        </div>
-
-        <div class="project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg">
-          <h4 class="text-xl font-semibold mb-2 text-white">FaceSense AI</h4>
-          <p class="text-gray-300">
-            A real-time desktop application for face analysis, including face mesh
-            visualization, emotion detection, and face recognition.
-          </p>
-        </div>
-
       </div>
     </div>
 
@@ -506,166 +481,8 @@
     transition: all 0.5s ease;
   }
   .project-btn:hover::after { left: 100%; }
-</style>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const projectCards = document.querySelectorAll('.project-card');
-  const slider = document.querySelector('.projects-wrapper');
-  const track = document.querySelector('.projects-track');
-  const projectsGrid = document.getElementById('projectsGrid');
-  const viewAllBtn = document.getElementById('viewAllBtn');
-  const backToSliderBtn = document.getElementById('backToSliderBtn');
 
-  // Intersection Observer برای slider
-  const projectObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.2 });
-  projectCards.forEach(card => projectObserver.observe(card));
-
-  // ===== Hover zoom effect روی کارت‌های Slider =====
-  projectCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      card.style.transform = 'translateY(-10px) scale(1.03)';
-      card.style.transition = 'transform 0.3s ease';
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'translateY(0) scale(1)';
-      card.style.transition = 'transform 0.3s ease';
-    });
-  });
-
-  // Pause/Resume slider
-  slider.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
-  slider.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
-
-  // Dragging slider
-  let isDown = false, startX, currentTranslate = 0;
-  slider.addEventListener('mousedown', e => { 
-    isDown = true; 
-    startX = e.clientX; 
-    track.style.animationPlayState = 'paused'; 
-    slider.style.cursor = 'grabbing'; 
-  });
-  slider.addEventListener('mouseup', () => { 
-    isDown = false; 
-    track.style.animationPlayState = 'running'; 
-    slider.style.cursor = 'grab'; 
-  });
-  slider.addEventListener('mouseleave', () => { 
-    isDown = false; 
-    track.style.animationPlayState = 'running'; 
-    slider.style.cursor = 'grab'; 
-  });
-  slider.addEventListener('mousemove', e => { 
-    if(!isDown) return; 
-    const delta = e.clientX - startX; 
-    currentTranslate += delta; 
-    track.style.transform = `translateX(${currentTranslate}px)`; 
-    startX = e.clientX; 
-  });
-
-  // Modal
-  const modal = document.createElement('div');
-  modal.classList.add('project-modal');
-  modal.innerHTML = `
-    <div class="project-modal-content">
-      <span class="modal-close">&times;</span>
-      <h4></h4>
-      <p></p>
-    </div>`;
-  document.body.appendChild(modal);
-
-  const modalTitle = modal.querySelector('h4');
-  const modalDesc = modal.querySelector('p');
-  const modalClose = modal.querySelector('.modal-close');
-
-  modalClose.addEventListener('click', () => modal.classList.remove('active'));
-  modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('active'); });
-
-  // ===== View All =====
-  viewAllBtn.addEventListener('click', () => {
-    slider.style.display = 'none';
-    track.style.animationPlayState = 'paused';
-    projectsGrid.innerHTML = '';
-
-    projectCards.forEach((card, index) => {
-      const title = card.querySelector('h4').textContent;
-      const desc = card.querySelector('p').textContent;
-
-      const gridCard = document.createElement('div');
-      gridCard.classList.add('grid-card');
-      gridCard.textContent = title;
-      gridCard.dataset.title = title;
-      gridCard.dataset.desc = desc;
-
-      // Fade-in effect
-      gridCard.style.opacity = 0;
-      gridCard.style.transform = 'translateY(20px)';
-      gridCard.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      setTimeout(() => {
-        gridCard.style.opacity = 1;
-        gridCard.style.transform = 'translateY(0)';
-      }, index * 150);
-
-      // Hover zoom
-      gridCard.addEventListener('mouseenter', () => {
-        gridCard.style.transform = 'scale(1.05)';
-        gridCard.style.transition = 'transform 0.3s ease';
-      });
-      gridCard.addEventListener('mouseleave', () => {
-        gridCard.style.transform = 'translateY(0) scale(1)';
-        gridCard.style.transition = 'transform 0.3s ease';
-      });
-
-      // modal event
-      gridCard.addEventListener('click', () => {
-        modalTitle.textContent = gridCard.dataset.title;
-        modalDesc.textContent = gridCard.dataset.desc;
-        modal.classList.add('active');
-      });
-
-      projectsGrid.appendChild(gridCard);
-    });
-
-    projectsGrid.classList.remove('hidden');
-    viewAllBtn.style.display = 'none';
-    backToSliderBtn.classList.remove('hidden');
-  });
-
-  // ===== Back to Slider with smooth animation =====
-  backToSliderBtn.addEventListener('click', () => {
-    projectsGrid.classList.add('hidden');
-
-    // آماده‌سازی Slider برای fade-in
-    slider.style.display = 'flex';
-    track.style.animationPlayState = 'paused';
-
-    projectCards.forEach((card, index) => {
-      card.style.opacity = 0;
-      card.style.transform = 'translateY(20px)';
-      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-
-      setTimeout(() => {
-        card.style.opacity = 1;
-        card.style.transform = 'translateY(0)';
-      }, index * 150);
-    });
-
-    // بعد از تمام انیمیشن‌ها، انیمیشن Slider دوباره شروع می‌شه
-    setTimeout(() => {
-      track.style.animationPlayState = 'running';
-    }, projectCards.length * 150 + 200);
-
-    backToSliderBtn.classList.add('hidden');
-    viewAllBtn.style.display = 'inline-block';
-  });
-});
-</script>
-
-<style>
   /* ===== GitHub Button inside modal (inline) ===== */
   .github-btn {
     display: inline-flex;
@@ -762,132 +579,149 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 </style>
 
+
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const projectCards = document.querySelectorAll('.project-card');
-  const slider = document.querySelector('.projects-wrapper');
+document.addEventListener('DOMContentLoaded', async () => {
   const track = document.querySelector('.projects-track');
+  const slider = document.querySelector('.projects-wrapper');
   const projectsGrid = document.getElementById('projectsGrid');
   const viewAllBtn = document.getElementById('viewAllBtn');
   const backToSliderBtn = document.getElementById('backToSliderBtn');
 
-  // --- Modal creation with GitHub button ---
+  /* ================= MODAL ================= */
   const modal = document.createElement('div');
   modal.classList.add('project-modal');
   modal.innerHTML = `
     <div class="project-modal-content">
       <span class="modal-close">&times;</span>
       <h4></h4>
-      <p></p>
-
-      <a class="github-btn" target="_blank">
+      <p class="modal-subtitle text-indigo-400 mb-2"></p>
+      <p class="modal-desc"></p>
+      <p class="mt-4 text-sm text-slate-400"><strong>Built with:</strong> <span class="modal-built"></span></p>
+      <p class="text-sm text-slate-400"><strong>Focus:</strong> <span class="modal-focus"></span></p>
+      <a class="github-btn mt-4" target="_blank">
         <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 
-          3.29 9.39 7.86 10.92.58.1.79-.25.79-.56 
-          0-.28-.01-1.02-.02-2-3.2.69-3.88-1.54-3.88-1.54
-          -.53-1.34-1.29-1.7-1.29-1.7-1.06-.72.08-.7.08-.7
-          1.17.08 1.78 1.2 1.78 1.2
-          1.04 1.78 2.73 1.27 3.4.97
-          .11-.75.41-1.27.74-1.56
-          -2.55-.29-5.23-1.28-5.23-5.69
-          0-1.26.45-2.29 1.19-3.1
-          -.12-.29-.52-1.45.11-3.02
-          0 0 .97-.31 3.18 1.18
-          .92-.26 1.91-.39 2.89-.39
-          .98 0 1.97.13 2.89.39
-          2.2-1.49 3.17-1.18 3.17-1.18
-          .63 1.57.23 2.73.11 3.02
-          .74.81 1.19 1.84 1.19 3.1
-          0 4.42-2.69 5.39-5.25 5.67
-          .42.36.79 1.08.79 2.18
-          0 1.57-.01 2.84-.01 3.22
-          0 .31.21.67.8.56
-          4.56-1.53 7.85-5.84 7.85-10.92
-          C23.5 5.73 18.27.5 12 .5z"/>
+          <path d="M12 0.5C5.73 0.5.5 5.73.5 12c0 5.1 3.29 9.42 7.86 10.95.58.1.79-.25.79-.56v-2.02c-3.2.7-3.87-1.54-3.87-1.54-.53-1.33-1.29-1.69-1.29-1.69-1.06-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.1-.75.4-1.27.73-1.56-2.55-.29-5.23-1.27-5.23-5.65 0-1.25.45-2.27 1.19-3.07-.12-.29-.52-1.47.11-3.07 0 0 .97-.31 3.18 1.17a11.1 11.1 0 0 1 5.8 0c2.2-1.48 3.17-1.17 3.17-1.17.64 1.6.24 2.78.12 3.07.74.8 1.18 1.82 1.18 3.07 0 4.39-2.69 5.36-5.25 5.64.41.36.78 1.08.78 2.18v3.23c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/>
         </svg>
-        View in GitHub
+        View on GitHub
       </a>
-    </div>`;
+    </div>
+  `;
   document.body.appendChild(modal);
 
   const modalTitle = modal.querySelector('h4');
-  const modalDesc = modal.querySelector('p');
-  const modalClose = modal.querySelector('.modal-close');
+  const modalSubtitle = modal.querySelector('.modal-subtitle');
+  const modalDesc = modal.querySelector('.modal-desc');
+  const modalBuilt = modal.querySelector('.modal-built');
+  const modalFocus = modal.querySelector('.modal-focus');
   const githubBtn = modal.querySelector('.github-btn');
 
-  modalClose.addEventListener('click', () => modal.classList.remove('active'));
-  modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('active'); });
+  modal.querySelector('.modal-close').onclick = () => modal.classList.remove('active');
+  modal.onclick = e => { if (e.target === modal) modal.classList.remove('active'); };
 
-  // ===== View All logic (اضافه کردن GitHub لینک بدون تغییر چیزی) =====
-  viewAllBtn.addEventListener('click', () => {
-    slider.style.display = 'none';
+  /* ================= LOAD JSON ================= */
+  const res = await fetch('projects.json');
+  const projects = await res.json();
+
+  /* ================= BUILD SLIDER ================= */
+  projects.forEach(p => {
+    const card = document.createElement('div');
+    card.className =
+      'project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg';
+
+    card.innerHTML = `
+      <h4 class="text-xl font-semibold mb-2 text-white">${p.title}</h4>
+      <p class="text-gray-300">${p.description}</p>
+    `;
+
+    card.dataset.title = p.title;
+    card.dataset.subtitle = p.subtitle;
+    card.dataset.desc = p.description;
+    card.dataset.built = p.built_with;
+    card.dataset.focus = p.focus;
+    card.dataset.github = p.github;
+
+    track.appendChild(card);
+  });
+
+  const projectCards = document.querySelectorAll('.project-card');
+
+  /* ================= OBSERVER ================= */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
+  }, { threshold: 0.2 });
+
+  projectCards.forEach(c => observer.observe(c));
+
+  /* ================= SLIDER INTERACTIONS ================= */
+  slider.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
+  slider.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
+
+  let isDown = false, startX, currentTranslate = 0;
+  slider.addEventListener('mousedown', e => {
+    isDown = true;
+    startX = e.clientX;
     track.style.animationPlayState = 'paused';
+  });
+  slider.addEventListener('mouseup', () => {
+    isDown = false;
+    track.style.animationPlayState = 'running';
+  });
+  slider.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    const dx = e.clientX - startX;
+    currentTranslate += dx;
+    track.style.transform = `translateX(${currentTranslate}px)`;
+    startX = e.clientX;
+  });
+
+  /* ================= VIEW ALL ================= */
+  viewAllBtn.onclick = () => {
+    slider.style.display = 'none';
     projectsGrid.innerHTML = '';
 
-    projectCards.forEach((card, index) => {
-      const title = card.querySelector('h4').textContent;
-      const desc = card.querySelector('p').textContent;
+    projectCards.forEach((card, i) => {
+      const g = document.createElement('div');
+      g.className = 'grid-card';
+      g.textContent = card.dataset.title;
 
-      const gridCard = document.createElement('div');
-      gridCard.classList.add('grid-card');
-      gridCard.textContent = title;
-      gridCard.dataset.title = title;
-      gridCard.dataset.desc = desc;
+      Object.assign(g.dataset, card.dataset);
 
-      // example GitHub link (می‌تونی هر پروژه لینک جدا بذاری)
-      gridCard.dataset.github = "https://github.com/Nozhan84"; 
-      // لینک GitHub مخصوص هر پروژه
-      if(title === "Assignment Manager Platform") {
-        gridCard.dataset.github = "https://github.com/Nozhan84/assignment-manager";
-      } else if(title === "Smart Identity Access Platform") {
-        gridCard.dataset.github = "https://github.com/Nozhan84/smart-identity";
-      } else if(title === "FaceSense AI") {
-        gridCard.dataset.github = "https://github.com/Nozhan84/facesense-ai";
-      } else {
-        gridCard.dataset.github = "https://github.com/Nozhan84"; // لینک پیش‌فرض
-      }
-
-      // Fade-in effect
-      gridCard.style.opacity = 0;
-      gridCard.style.transform = 'translateY(20px)';
-      gridCard.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      g.style.opacity = 0;
+      g.style.transform = 'translateY(20px)';
+      g.style.transition = 'all 0.5s ease';
       setTimeout(() => {
-        gridCard.style.opacity = 1;
-        gridCard.style.transform = 'translateY(0)';
-      }, index * 150);
+        g.style.opacity = 1;
+        g.style.transform = 'translateY(0)';
+      }, i * 120);
 
-      // Hover zoom
-      gridCard.addEventListener('mouseenter', () => {
-        gridCard.style.transform = 'scale(1.05)';
-        gridCard.style.transition = 'transform 0.3s ease';
-      });
-      gridCard.addEventListener('mouseleave', () => {
-        gridCard.style.transform = 'translateY(0) scale(1)';
-        gridCard.style.transition = 'transform 0.3s ease';
-      });
-
-      // modal event with GitHub button
-      gridCard.addEventListener('click', () => {
-        modalTitle.textContent = gridCard.dataset.title;
-        modalDesc.textContent = gridCard.dataset.desc;
-        modal.querySelector('.github-btn').href = gridCard.dataset.github;
-
-        // لینک GitHub هر پروژه
-        githubBtn.href = gridCard.dataset.github;
-
-        feather.replace({ "class": "github-icon" }); // رندر آیکون
+      g.onclick = () => {
+        modalTitle.textContent = g.dataset.title;
+        modalSubtitle.textContent = g.dataset.subtitle;
+        modalDesc.textContent = g.dataset.desc;
+        modalBuilt.textContent = g.dataset.built;
+        modalFocus.textContent = g.dataset.focus;
+        githubBtn.href = g.dataset.github;
         modal.classList.add('active');
-      });
+      };
 
-      projectsGrid.appendChild(gridCard);
+      projectsGrid.appendChild(g);
     });
 
     projectsGrid.classList.remove('hidden');
     viewAllBtn.style.display = 'none';
     backToSliderBtn.classList.remove('hidden');
-  });
+  };
+
+  backToSliderBtn.onclick = () => {
+    projectsGrid.classList.add('hidden');
+    slider.style.display = 'flex';
+    viewAllBtn.style.display = 'inline-block';
+    backToSliderBtn.classList.add('hidden');
+  };
 });
 </script>
+
 
 <!-- ================= CONTACT ================= -->
 <section id="contact" class="fade-section py-24">
@@ -923,3 +757,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </body>
 </html>
 
+
+
+<a class="github-btn mt-4" target="_blank">View on GitHub</a>
