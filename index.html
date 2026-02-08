@@ -5,40 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nozhan Nazari | Portfolio</title>
 
-  <!-- SEO -->
+  <!-- ================= SEO META TAGS ================= -->
   <meta name="description" content="Nozhan Nazari — Python Developer specializing in backend systems, AI-powered applications, Telegram bots, and desktop software." />
   <meta name="keywords" content="Python Developer, Backend Developer, FastAPI, AI, Computer Vision, Telegram Bot, PyQt, Nozhan Nazari" />
   <meta name="author" content="Nozhan Nazari" />
 
-  <!-- Open Graph -->
+  <!-- ================= OPEN GRAPH / SOCIAL MEDIA PREVIEW ================= -->
   <meta property="og:title" content="Nozhan Nazari | Python & AI Developer" />
   <meta property="og:description" content="Backend systems, AI-powered applications, Telegram bots, and scalable software solutions." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="images/picture_1.png" />
 
-  <!-- Tailwind CDN -->
+  <!-- ================= TAILWIND CSS CDN ================= -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Font -->
+  <!-- ================= GOOGLE FONT (INTER) ================= -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Icons -->
+  <!-- ================= FEATHER ICONS LIBRARY ================= -->
   <script src="https://unpkg.com/feather-icons"></script>
 
   <style>
+    /* Enable smooth scrolling for anchor navigation */
     html {
       scroll-behavior: smooth;
     }
+
+    /* Global font configuration */
     body {
       font-family: 'Inter', sans-serif;
     }
 
-    /* Subtle scroll animation */
+    /* ================= GENERIC SECTION FADE-IN ANIMATION ================= */
     .fade-section {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
+
     .fade-section.visible {
       opacity: 1;
       transform: translateY(0);
@@ -51,10 +55,14 @@
 
 
 
-<!-- ================= NAVBAR ================= -->
+<!-- ================= MAIN NAVIGATION BAR ================= -->
 <nav class="fixed top-0 w-full bg-slate-900/80 backdrop-blur border-b border-slate-800 z-50">
   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+
+    <!-- Website / Personal Branding -->
     <h1 class="text-xl font-bold text-white">Nozhan Nazari</h1>
+
+    <!-- Desktop Navigation Links -->
     <ul class="hidden md:flex gap-6 text-sm">
       <li><a href="#home" class="hover:text-indigo-400">Home</a></li>
       <li><a href="#about" class="hover:text-indigo-400">About</a></li>
@@ -65,20 +73,22 @@
   </div>
 </nav>
 
-<!-- ================= HERO ================= -->
+<!-- ================= HERO / INTRODUCTION SECTION ================= -->
 <section id="home" class="min-h-screen flex items-center pt-24 bg-slate-900">
   <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
 
-    <!-- متن معرفی -->
+    <!-- Introductory Text Content -->
     <div>
       <h2 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight text-white">
         Hi, I'm <span class="gradient-text">Nozhan Nazari</span>
       </h2>
 
+      <!-- Professional Role / Tagline -->
       <p class="text-lg md:text-xl text-gray-300 mb-6">
         Python Developer | Backend & AI Systems | Telegram Bots & Desktop Apps
       </p>
 
+      <!-- Short Professional Summary -->
       <p class="text-gray-400 mb-8 text-base md:text-lg leading-relaxed">
         I transform complex ideas into <span class="text-indigo-400 font-semibold">scalable, real-world solutions</span> —  
         from AI-powered desktop applications and Telegram bots  
@@ -86,6 +96,7 @@
         Passionate about <span class="text-indigo-400 font-semibold">computer vision</span> and optimization.
       </p>
 
+      <!-- Call-To-Action Buttons -->
       <div class="flex flex-wrap gap-4 mb-8">
         <a href="#contact" class="bg-indigo-500 hover:bg-indigo-600 px-6 py-3 rounded-lg text-white shadow-lg transition duration-300 hover:scale-105">
           Contact Me
@@ -95,7 +106,7 @@
         </a>
       </div>
 
-      <!-- شبکه‌های اجتماعی -->
+      <!-- Social Media Links -->
       <div class="flex gap-4 mt-4">
         <a href="https://github.com/Nozhan84" target="_blank" class="p-3 rounded-full bg-gray-800 hover:bg-gradient-to-tr hover:from-indigo-500 hover:to-pink-500 text-white transition transform hover:scale-110 shadow-md">
           <i data-feather="github"></i>
@@ -112,7 +123,7 @@
       </div>
     </div>
 
-    <!-- عکس پروفایل -->
+    <!-- Profile Image Container -->
     <div class="flex justify-center">
       <div class="rounded-full border-4 border-gradient-to-tr from-indigo-500 to-pink-500 shadow-2xl p-1">
         <img src="images/picture_1.png" class="rounded-full shadow-lg" alt="Nozhan Nazari profile photo">
@@ -123,15 +134,17 @@
 </section>
 
 <style>
+/* ================= HERO GRADIENT TEXT ANIMATION ================= */
 .gradient-text {
     background: linear-gradient(90deg, #6366f1, #8b5cf6, #a78bfa);
     background-size: 200% 200%;
-    background-clip: text;           /* اضافه شد */
-    -webkit-background-clip: text;   /* برای Chrome/Safari */
+    background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradientMove 4s linear infinite;
 }
 
+/* Gradient Animation Keyframes */
   @keyframes gradientMove {
     0% { background-position: 0% }
     50% { background-position: 100% }
@@ -140,80 +153,89 @@
 </style>
 
 
-<!-- ================= ABOUT ================= -->
+<!-- ================= ABOUT SECTION ================= -->
 <section id="about" class="fade-section py-24 bg-slate-800">
   <div class="max-w-4xl mx-auto px-6 text-center">
+
+    <!-- Section Title -->
     <h3 class="text-3xl font-bold text-white mb-12">About Me</h3>
 
+    <!-- Personal Introduction -->
     <p class="text-gray-400 text-lg mb-6">
       Hi! I'm <span class="text-indigo-400 font-semibold">Nozhan Nazari</span>, born in <span class="text-indigo-400 font-semibold">2005</span>.  
       I'm a Computer Engineering student and passionate developer & entrepreneur.  
       I turn complex challenges into elegant, working solutions — from backend systems and AI-powered apps to interactive Telegram bots and desktop software.
     </p>
 
+    <!-- Skills / Personal Highlights Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left mb-6">
-      <!-- Skill / Hobby Bullet 1 -->
+
+      <!-- Highlight Item -->
       <div class="flex items-start gap-3">
         <span class="text-indigo-400 text-xl">⚡</span>
         <p class="text-gray-400">9 years of volleyball experience, including leading my team as captain.</p>
       </div>
 
-      <!-- Skill / Hobby Bullet 2 -->
+      <!-- Highlight Item -->
       <div class="flex items-start gap-3">
         <span class="text-indigo-400 text-xl">🏐</span>
         <p class="text-gray-400">Teamwork, discipline, and leadership skills that translate into every project.</p>
       </div>
 
-      <!-- Skill / Hobby Bullet 3 -->
+      <!-- Highlight Item -->
       <div class="flex items-start gap-3">
         <span class="text-indigo-400 text-xl">💻</span>
         <p class="text-gray-400">Specialized in scalable backend systems, AI & computer vision, and automation frameworks.</p>
       </div>
 
-      <!-- Skill / Hobby Bullet 4 -->
+      <!-- Highlight Item -->
       <div class="flex items-start gap-3">
         <span class="text-indigo-400 text-xl">⚙️</span>
         <p class="text-gray-400">Experience with full-fledged desktop apps and Telegram bots that solve real-world problems.</p>
       </div>
 
-      <!-- Skill / Hobby Bullet 5 -->
+      <!-- Highlight Item -->
       <div class="flex items-start gap-3">
         <span class="text-indigo-400 text-xl">🛹</span>
         <p class="text-gray-400">Hobbies include skating and badminton — keeping creativity and energy high.</p>
       </div>
 
-      <!-- Skill / Hobby Bullet 6 -->
+      <!-- Highlight Item -->
       <div class="flex items-start gap-3">
         <span class="text-indigo-400 text-xl">☕🐍</span>
         <p class="text-gray-400 italic">Fun fact: I enjoy debugging more than writing new code — some say it’s weird, I call it love.</p>
       </div>
+
     </div>
   </div>
 </section>
 
 
-<!-- ================= FUN / WHAT I DO (Lux Version) ================= -->
+<!-- ================= FUN / WHAT I DO SECTION ================= -->
 <section id="fun" class="fade-section py-24 bg-slate-900">
   <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Section Title -->
     <h3 class="text-3xl font-bold text-white text-center mb-12">Fun / What I Do</h3>
 
+    <!-- Feature Cards Container -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-      <!-- Card 1 -->
+      <!-- Feature Card: Scalable Systems -->
       <div class="fun-card p-6 rounded-2xl flex flex-col items-center text-center gap-4">
         <i data-feather="code" class="floating-icon text-indigo-400 w-12 h-12"></i>
         <h4 class="text-white font-semibold text-lg">Scalable Systems</h4>
         <p class="text-gray-300 text-sm">Backend APIs, Telegram bots, and desktop apps that actually survive production.</p>
       </div>
 
-      <!-- Card 2 -->
+      <!-- Feature Card: AI & Computer Vision -->
       <div class="fun-card p-6 rounded-2xl flex flex-col items-center text-center gap-4">
         <i data-feather="cpu" class="floating-icon text-indigo-400 w-12 h-12"></i>
         <h4 class="text-white font-semibold text-lg">AI & Computer Vision</h4>
         <p class="text-gray-300 text-sm">Face recognition, motion detection, age & emotion detection — I bring machines to life.</p>
       </div>
 
-      <!-- Card 3 -->
+      <!-- Feature Card: Personal Interests -->
       <div class="fun-card p-6 rounded-2xl flex flex-col items-center text-center gap-4">
         <i data-feather="coffee" class="floating-icon text-indigo-400 w-12 h-12"></i>
         <h4 class="text-white font-semibold text-lg">Extra Life</h4>
@@ -225,7 +247,7 @@
 </section>
 
 <style>
-  /* Fun Cards Lux */
+  /* ================= FUN CARDS VISUAL STYLE ================= */
   .fun-card {
     background: linear-gradient(145deg, rgba(30,41,59,0.7), rgba(17,24,39,0.7));
     backdrop-filter: blur(6px);
@@ -236,26 +258,29 @@
     transform: translateY(30px) scale(0.95);
   }
 
+  /* Visible state triggered by Intersection Observer */
   .fun-card.visible {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 
+  /* Hover animation for cards */
   .fun-card:hover {
     transform: translateY(-10px) scale(1.05);
     box-shadow: 0 25px 40px rgba(79,70,229,0.5);
     background: linear-gradient(145deg, rgba(79,70,229,0.2), rgba(55,48,163,0.2));
   }
 
+  /* Title hover color transition */
   .fun-card h4 {
     transition: color 0.4s ease;
   }
 
   .fun-card:hover h4 {
-    color: #a5b4fc; /* Slightly brighter indigo */
+    color: #a5b4fc;
   }
 
-  /* Icon floating + rotation micro animation */
+  /* ================= FLOATING ICON MICRO ANIMATION ================= */
   @keyframes floatRotate {
     0%, 100% { transform: translateY(0px) rotate(0deg); }
     25% { transform: translateY(-4px) rotate(2deg); }
@@ -275,10 +300,11 @@
 </style>
 
 <script>
-  // Feather icons
+  // ================= INITIALIZE FEATHER ICONS =================
   feather.replace();
 
-  // Scroll observer برای fade-in Fun cards
+  // ================= INTERSECTION OBSERVER FOR FUN CARDS =================
+  // Adds fade-in animation when cards enter viewport
   const funCards = document.querySelectorAll('.fun-card');
   const funObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -288,61 +314,65 @@
     });
   }, { threshold: 0.2 });
 
+  // Observe each card
   funCards.forEach(card => funObserver.observe(card));
 </script>
 
 
-<!-- ================= SKILLS (Lux) ================= -->
+<!-- ================= SKILLS SECTION ================= -->
 <section id="skills" class="fade-section py-24 bg-slate-900">
   <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Section Title -->
     <h3 class="text-3xl font-bold text-white text-center mb-12">Skills</h3>
 
+    <!-- Skills Grid -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
 
-      <!-- Python -->
+      <!-- Skill: Python -->
       <div class="skill-card p-6 rounded-2xl flex flex-col items-center gap-3">
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
              class="skill-icon w-12 h-12" alt="Python Logo">
         <span class="text-white font-semibold">Python</span>
       </div>
 
-      <!-- FastAPI / Flask -->
+      <!-- Skill: FastAPI / Flask -->
       <div class="skill-card p-6 rounded-2xl flex flex-col items-center gap-3">
         <i data-feather="server" class="skill-icon text-indigo-400 w-12 h-12"></i>
         <span class="text-white font-semibold">FastAPI / Flask</span>
       </div>
 
-      <!-- RESTful APIs -->
+      <!-- Skill: RESTful APIs -->
       <div class="skill-card p-6 rounded-2xl flex flex-col items-center gap-3">
         <i data-feather="cpu" class="skill-icon text-indigo-400 w-12 h-12"></i>
         <span class="text-white font-semibold">RESTful APIs</span>
       </div>
 
-      <!-- Databases -->
+      <!-- Skill: Databases -->
       <div class="skill-card p-6 rounded-2xl flex flex-col items-center gap-3">
         <i data-feather="database" class="skill-icon text-indigo-400 w-12 h-12"></i>
         <span class="text-white font-semibold">MySQL / PostgreSQL / SQLite</span>
       </div>
 
-      <!-- Telegram Bot -->
+      <!-- Skill: Telegram Bots -->
       <div class="skill-card p-6 rounded-2xl flex flex-col items-center gap-3">
         <i data-feather="send" class="skill-icon text-indigo-400 w-12 h-12"></i>
         <span class="text-white font-semibold">Telegram Bot</span>
       </div>
 
-      <!-- AI & CV -->
+      <!-- Skill: AI & Computer Vision -->
       <div class="skill-card p-6 rounded-2xl flex flex-col items-center gap-3">
         <i data-feather="eye" class="skill-icon text-indigo-400 w-12 h-12"></i>
         <span class="text-white font-semibold">AI & Computer Vision</span>
       </div>
 
-      <!-- PyQt6 -->
+      <!-- Skill: PyQt6 Desktop Applications -->
       <div class="skill-card p-6 rounded-2xl flex flex-col items-center gap-3">
         <i data-feather="monitor" class="skill-icon text-indigo-400 w-12 h-12"></i>
         <span class="text-white font-semibold">PyQt6 Desktop Apps</span>
       </div>
 
-      <!-- Git & GitHub -->
+      <!-- Skill: Git & GitHub -->
       <div class="skill-card p-6 rounded-2xl flex flex-col items-center gap-3">
         <i data-feather="git-branch" class="skill-icon text-indigo-400 w-12 h-12"></i>
         <span class="text-white font-semibold">Git & GitHub</span>
@@ -353,7 +383,7 @@
 </section>
 
 <style>
-  /* Skill Cards Lux */
+  /* ================= SKILL CARDS VISUAL STYLE ================= */
   .skill-card {
     background: linear-gradient(145deg, rgba(30,41,59,0.7), rgba(17,24,39,0.7));
     backdrop-filter: blur(6px);
@@ -365,17 +395,20 @@
     padding: 1.5rem;
   }
 
+  /* Visible state triggered by Intersection Observer */
   .skill-card.visible {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
 
+  /* Hover animation for skill cards */
   .skill-card:hover {
     transform: translateY(-10px) scale(1.05);
     box-shadow: 0 25px 40px rgba(79,70,229,0.5);
     background: linear-gradient(145deg, rgba(79,70,229,0.2), rgba(55,48,163,0.2));
   }
 
+  /* Skill icon hover animation */
   .skill-icon {
     transition: transform 0.4s ease, filter 0.4s ease, color 0.4s ease;
   }
@@ -388,10 +421,11 @@
 </style>
 
 <script>
-  // Feather icons
+  // ================= INITIALIZE FEATHER ICONS =================
   feather.replace();
 
-  // Scroll observer برای fade-in Skill cards
+  // ================= INTERSECTION OBSERVER FOR SKILL CARDS =================
+  // Triggers fade-in animation when skill cards enter the viewport
   const skillCards = document.querySelectorAll('.skill-card');
   const skillObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -401,38 +435,44 @@
     });
   }, { threshold: 0.2 });
 
+  // Observe each skill card
   skillCards.forEach(card => skillObserver.observe(card));
 </script>
 
-<!-- ================= PROJECTS (Lux) ================= -->
+<!-- ================= PROJECTS SECTION ================= -->
 <section id="projects" class="fade-section py-24 bg-slate-800">
   <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Section Header + View Controls -->
     <div class="flex justify-center items-center mb-6 relative">
       <h3 class="text-3xl font-bold text-white text-center absolute left-1/2 transform -translate-x-1/2">
         Projects
       </h3>
+
+      <!-- View Mode Buttons -->
       <div class="flex gap-4 ml-auto">
         <button id="viewAllBtn" class="project-btn">View All</button>
         <button id="backToSliderBtn" class="project-btn hidden">Back</button>
       </div>
     </div>
 
-    <!-- HORIZONTAL SLIDER -->
+    <!-- ================= HORIZONTAL PROJECT SLIDER ================= -->
     <div class="projects-wrapper">
       <div class="projects-track flex gap-8">
-
+        <!-- Project cards will be injected dynamically -->
       </div>
     </div>
 
-    <!-- GRID VIEW (Initially Hidden) -->
+    <!-- ================= GRID VIEW (HIDDEN BY DEFAULT) ================= -->
     <div id="projectsGrid" class="hidden mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       <!-- Project items will be cloned here dynamically -->
     </div>
+
   </div>
 </section>
 
 <style>
-  /* ===== Project Cards ===== */
+  /* ================= PROJECT SLIDER CARDS ================= */
   .project-card {
     width: 320px;
     min-height: 320px;
@@ -445,33 +485,38 @@
     display: flex;
     flex-direction: column;
   }
+
   .project-card.visible {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+
   .project-card:hover {
     transform: translateY(-10px) scale(1.03);
     box-shadow: 0 25px 50px rgba(79,70,229,0.5);
     background: linear-gradient(145deg, rgba(79,70,229,0.2), rgba(55,48,163,0.2));
   }
 
-  /* ===== Slider ===== */
+  /* ================= SLIDER CONTAINER ================= */
   .projects-wrapper {
     overflow: hidden;
     position: relative;
     cursor: grab;
   }
+
   .projects-track {
     display: flex;
     width: max-content;
     animation: scrollProjects 40s linear infinite;
   }
+
+  /* Continuous horizontal auto-scroll */
   @keyframes scrollProjects {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
   }
 
-  /* ===== Grid Cards ===== */
+  /* ================= GRID VIEW PROJECT CARDS ================= */
   .grid-card {
     background: linear-gradient(145deg, rgba(30,41,59,0.7), rgba(17,24,39,0.7));
     backdrop-filter: blur(6px);
@@ -482,12 +527,13 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
   }
+
   .grid-card:hover {
     transform: scale(1.05);
     box-shadow: 0 15px 40px rgba(79,70,229,0.5);
   }
 
-  /* ===== Modal ===== */
+  /* ================= PROJECT DETAILS MODAL ================= */
   .project-modal {
     position: fixed;
     inset: 0;
@@ -500,10 +546,12 @@
     pointer-events: none;
     transition: opacity 0.3s ease;
   }
+
   .project-modal.active {
     opacity: 1;
     pointer-events: all;
   }
+
   .project-modal-content {
     background: #1e293b;
     padding: 2rem;
@@ -514,15 +562,28 @@
     text-align: left;
     position: relative;
   }
-  .project-modal-content h4 { font-size: 1.5rem; margin-bottom: 1rem; }
-  .project-modal-content p { color: #cbd5e1; }
+
+  .project-modal-content h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-modal-content p {
+    color: #cbd5e1;
+  }
+
+  /* Close Button */
   .modal-close {
-    position: absolute; top: 1rem; right: 1rem;
-    cursor: pointer; font-weight: bold; font-size: 1.2rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
     color: #fff;
   }
 
-  /* ===== Buttons ===== */
+  /* ================= PROJECT VIEW BUTTONS ================= */
   .project-btn {
     font-weight: 600;
     color: #8b5cf6;
@@ -535,11 +596,14 @@
     position: relative;
     overflow: hidden;
   }
+
   .project-btn:hover {
     background: linear-gradient(90deg, rgba(139,92,246,0.2), rgba(139,92,246,0.4));
     transform: scale(1.05);
     box-shadow: 0 8px 25px rgba(139,92,246,0.5);
   }
+
+  /* Button shimmer effect */
   .project-btn::after {
     content: '';
     position: absolute;
@@ -551,10 +615,12 @@
     transform: skewX(-20deg);
     transition: all 0.5s ease;
   }
-  .project-btn:hover::after { left: 100%; }
 
+  .project-btn:hover::after {
+    left: 100%;
+  }
 
-  /* ===== GitHub Button inside modal (inline) ===== */
+  /* ================= GITHUB LINK BUTTON (MODAL) ================= */
   .github-btn {
     display: inline-flex;
     align-items: center;
@@ -569,26 +635,23 @@
     line-height: 1;
     transition: all 0.3s ease;
     text-decoration: none;
-    width: fit-content;   /* 👈 مهم: جمع‌وجور و inline */
+    width: fit-content;
   }
 
   .github-btn svg {
     width: 18px;
     height: 18px;
-    fill: currentColor;   /* 👈 رنگ لوگو = رنگ متن */
+    fill: currentColor;
   }
 
   .github-btn:hover {
-    background: linear-gradient(
-      90deg,
-      rgba(139,92,246,0.2),
-      rgba(139,92,246,0.4)
-    );
+    background: linear-gradient(90deg, rgba(139,92,246,0.2), rgba(139,92,246,0.4));
     transform: translateY(-1px) scale(1.05);
     box-shadow: 0 8px 25px rgba(139,92,246,0.5);
     color: #fff;
   }
 
+  /* ================= MODAL ANIMATION STATES ================= */
   .project-modal {
     backdrop-filter: blur(0px);
   }
@@ -608,15 +671,14 @@
     opacity: 1;
   }
 
-  /* ===== Skills-like Hover Effect for Projects Grid ===== */
+  /* ================= GRID CARD LUXURY HOVER EFFECTS ================= */
   .grid-card {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(
-      135deg,
-      rgba(30,41,59,0.7),
-      rgba(17,24,39,0.7)
-    );
+    background: linear-gradient(135deg, rgba(30,41,59,0.7), rgba(17,24,39,0.7));
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    z-index: 1;
   }
 
   .grid-card::before {
@@ -639,81 +701,25 @@
   }
 
   .grid-card:hover {
-    color: #fff;
-    box-shadow:
-      0 0 25px rgba(139,92,246,0.6),
-      0 0 60px rgba(79,70,229,0.4);
-  }
-
-  .grid-card {
-    z-index: 1;
-  }
-
-/* ================= PROJECTS → SAME AS SKILLS ================= */
-
-/* ---- Buttons (View All / Back) ---- */
-  .project-btn {
-    background: linear-gradient(
-      145deg,
-      rgba(30,41,59,0.7),
-      rgba(17,24,39,0.7)
-    );
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(79,70,229,0.25);
-    color: #c7d2fe;
-    transition:
-      transform 0.45s ease,
-      box-shadow 0.45s ease,
-      background 0.45s ease;
-  }
-
-  .project-btn:hover {
-    transform: translateY(-6px) scale(1.08);
-    box-shadow: 0 25px 40px rgba(79,70,229,0.55);
-    background: linear-gradient(
-      145deg,
-      rgba(79,70,229,0.25),
-      rgba(55,48,163,0.25)
-    );
-  }
-
-  /* ---- Grid Project Names (View All) ---- */
-  .grid-card {
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    transition:
-      transform 0.45s ease,
-      box-shadow 0.45s ease,
-      background 0.45s ease,
-      color 0.4s ease;
-  }
-
-  .grid-card:hover {
-    transform: translateY(-10px) scale(1.08);
-    background: linear-gradient(
-      145deg,
-      rgba(79,70,229,0.25),
-      rgba(55,48,163,0.25)
-    );
+    color: #e0e7ff;
     box-shadow:
       0 25px 40px rgba(79,70,229,0.55),
       0 0 40px rgba(139,92,246,0.35);
-    color: #e0e7ff;
-}
+  }
 
-/* ---- Micro text animation ---- */
-  .project-btn,
-  .grid-card {
+  /* ================= MICRO TEXT & RIPPLE EFFECTS ================= */
+  .grid-card,
+  .project-btn {
     text-shadow: none;
   }
 
-  .project-btn:hover,
-  .grid-card:hover {
+  .grid-card:hover,
+  .project-btn:hover {
     text-shadow:
       0 2px 10px rgba(139,92,246,0.45),
       0 0 20px rgba(79,70,229,0.35);
   }
-/* ---- Luxury ripple light ---- */
+
   .project-btn::before,
   .grid-card::after {
     content: '';
@@ -735,94 +741,42 @@
     transform: translateX(120%);
   }
 
-/* ---- Staggered hover timing ---- */
-  .project-btn {
-    transition:
-      transform 0.35s ease,
-      box-shadow 0.45s ease 0.05s,
-      background 0.45s ease 0.05s,
-      color 0.3s ease;
-  }
-
+  /* ================= GRID CARD TEXT LIFT ================= */
   .grid-card {
-    transition:
-      transform 0.35s ease,
-      box-shadow 0.45s ease 0.08s,
-      background 0.45s ease 0.08s,
-      color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  /* ===== REAL micro text lift (no HTML change) ===== */
-.grid-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  .grid-card > * {
+    position: relative;
+    z-index: 2;
+    transition:
+      transform 0.35s ease,
+      text-shadow 0.35s ease,
+      letter-spacing 0.35s ease;
+  }
 
-.grid-card > * {
-  transition:
-    transform 0.35s ease,
-    text-shadow 0.35s ease,
-    letter-spacing 0.35s ease;
-}
-
-.grid-card:hover > * {
-  transform: translateY(-6px);
-  letter-spacing: 0.6px;
-  text-shadow:
-    0 4px 12px rgba(139,92,246,0.55),
-    0 0 22px rgba(79,70,229,0.4);
-}
-
-/* ---- Fix ripple visibility ---- */
-.grid-card::after {
-  z-index: 0;
-}
-
-.grid-card > * {
-  position: relative;
-  z-index: 2;
-}
-
-/* ===== Human stagger ===== */
-.grid-card {
-  transition: background 0.45s ease;
-}
-
-.grid-card:hover {
-  transition-delay: 0s;
-}
-
-.grid-card:hover > * {
-  transition-delay: 0.08s;
-}
-
-.grid-card > span {
-  position: relative; /* تا z-index اعمال شه */
-  z-index: 2;         /* روی ripple */
-  display: inline-block;
-  transition: transform 0.35s ease, text-shadow 0.35s ease, letter-spacing 0.35s ease;
-}
-
-.grid-card:hover > span {
-  transform: translateY(-6px);
-  letter-spacing: 0.6px;
-  text-shadow:
-    0 4px 12px rgba(139,92,246,0.55),
-    0 0 22px rgba(79,70,229,0.4);
-}
+  .grid-card:hover > * {
+    transform: translateY(-6px);
+    letter-spacing: 0.6px;
+    text-shadow:
+      0 4px 12px rgba(139,92,246,0.55),
+      0 0 22px rgba(79,70,229,0.4);
+  }
 </style>
-
 
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
+
+  /* ================= DOM REFERENCES ================= */
   const track = document.querySelector('.projects-track');
   const slider = document.querySelector('.projects-wrapper');
   const projectsGrid = document.getElementById('projectsGrid');
   const viewAllBtn = document.getElementById('viewAllBtn');
   const backToSliderBtn = document.getElementById('backToSliderBtn');
 
-  /* ================= MODAL ================= */
+  /* ================= PROJECT DETAILS MODAL SETUP ================= */
   const modal = document.createElement('div');
   modal.classList.add('project-modal');
   modal.innerHTML = `
@@ -843,6 +797,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   `;
   document.body.appendChild(modal);
 
+  /* ================= MODAL ELEMENT REFERENCES ================= */
   const modalTitle = modal.querySelector('h4');
   const modalSubtitle = modal.querySelector('.modal-subtitle');
   const modalDesc = modal.querySelector('.modal-desc');
@@ -853,37 +808,37 @@ document.addEventListener('DOMContentLoaded', async () => {
   modal.querySelector('.modal-close').onclick = () => modal.classList.remove('active');
   modal.onclick = e => { if (e.target === modal) modal.classList.remove('active'); };
 
-  /* ================= LOAD JSON ================= */
+  /* ================= LOAD PROJECTS DATA ================= */
   const res = await fetch('projects.json');
   const projects = await res.json();
 
-  /* ================= BUILD SLIDER ================= */
-    projects.forEach(p => {
-      const card = document.createElement('div');
-      card.className =
-        'project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg';
+  /* ================= BUILD SLIDER PROJECT CARDS ================= */
+  projects.forEach(p => {
+    const card = document.createElement('div');
+    card.className =
+      'project-card p-6 rounded-2xl bg-gradient-to-tr from-slate-900/70 via-slate-800/50 to-slate-900/50 border border-indigo-500/20 shadow-lg';
 
-      card.innerHTML = `
-        <h4 class="text-xl font-semibold mb-2 text-white">${p.title}</h4>
-        <p class="text-gray-300">${p.description}</p>
-      `;
+    card.innerHTML = `
+      <h4 class="text-xl font-semibold mb-2 text-white">${p.title}</h4>
+      <p class="text-gray-300">${p.description}</p>
+    `;
 
-      card.dataset.title = p.title;
-      card.dataset.subtitle = p.subtitle;
-      card.dataset.desc = p.description;
-      card.dataset.built = p.built_with;
-      card.dataset.focus = p.focus;
-      card.dataset.github = p.github;
+    card.dataset.title = p.title;
+    card.dataset.subtitle = p.subtitle;
+    card.dataset.desc = p.description;
+    card.dataset.built = p.built_with;
+    card.dataset.focus = p.focus;
+    card.dataset.github = p.github;
 
-      track.appendChild(card);
+    track.appendChild(card);
   });
 
-  // 🌀 این خط باعث میشه کارت‌ها loop بشن و فاصله نباشه
+  /* Duplicate cards for infinite scrolling loop */
   track.innerHTML += track.innerHTML;
 
   const projectCards = document.querySelectorAll('.project-card');
 
-  /* ================= OBSERVER ================= */
+  /* ================= FADE-IN OBSERVER ================= */
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
   }, { threshold: 0.2 });
@@ -900,10 +855,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     startX = e.clientX;
     track.style.animationPlayState = 'paused';
   });
+
   slider.addEventListener('mouseup', () => {
     isDown = false;
     track.style.animationPlayState = 'running';
   });
+
   slider.addEventListener('mousemove', e => {
     if (!isDown) return;
     const dx = e.clientX - startX;
@@ -912,7 +869,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     startX = e.clientX;
   });
 
-  /* ================= VIEW ALL ================= */
+  /* ================= VIEW ALL (GRID MODE) ================= */
   viewAllBtn.onclick = () => {
     slider.style.display = 'none';
     projectsGrid.innerHTML = '';
@@ -922,7 +879,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       g.className = 'grid-card';
       g.innerHTML = `<span>${p.title}</span>`;
 
-      // داده‌ها
       g.dataset.title = p.title;
       g.dataset.subtitle = p.subtitle;
       g.dataset.desc = p.description;
@@ -930,14 +886,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       g.dataset.focus = p.focus;
       g.dataset.github = p.github;
 
-      // 💖 انیمیشن staggered ورود دونه‌دونه
+      /* Staggered entry animation */
       g.style.opacity = 0;
       g.style.transform = 'translateY(20px)';
       g.style.transition = 'all 0.5s ease';
+
       setTimeout(() => {
         g.style.opacity = 1;
         g.style.transform = 'translateY(0)';
-      }, i * 120); // فاصله 120ms بین کارت‌ها
+      }, i * 120);
 
       g.onclick = () => {
         modalTitle.textContent = g.dataset.title;
@@ -951,19 +908,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       projectsGrid.appendChild(g);
     });
-    
+
     projectsGrid.classList.remove('hidden');
     viewAllBtn.style.display = 'none';
     backToSliderBtn.classList.remove('hidden');
   };
 
+  /* ================= BACK TO SLIDER ================= */
   backToSliderBtn.onclick = () => {
     projectsGrid.classList.add('hidden');
     slider.style.display = 'flex';
     viewAllBtn.style.display = 'inline-block';
     backToSliderBtn.classList.add('hidden');
 
-    // لوکس و smooth animation برای کارت‌ها
+    /* Re-trigger card animations */
     projectCards.forEach((card, i) => {
       card.style.opacity = 0;
       card.style.transform = 'translateY(30px) scale(0.95)';
@@ -972,24 +930,31 @@ document.addEventListener('DOMContentLoaded', async () => {
       setTimeout(() => {
         card.style.opacity = 1;
         card.style.transform = 'translateY(0) scale(1)';
-      }, i * 120); // هر کارت با 120ms فاصله ظاهر میشه
+      }, i * 120);
     });
   };
+
 });
 </script>
 
 
-<!-- ================= CONTACT ================= -->
+<!-- ================= CONTACT SECTION ================= -->
 <section id="contact" class="fade-section py-24 bg-slate-900">
   <div class="max-w-4xl mx-auto px-6 text-center">
+
+    <!-- Section Title -->
     <h3 class="text-3xl font-bold text-white mb-6">Contact</h3>
+
+    <!-- Short Description -->
     <p class="text-gray-400 mb-6">
       Feel free to reach out for collaboration, backend development,
       or AI-related projects.
     </p>
+
+    <!-- Contact Email -->
     <p class="text-indigo-400 text-lg mb-8">nozhannazari4484@gmail.com</p>
 
-    <!-- Social Icons -->
+    <!-- Social Media Icons -->
     <div class="flex justify-center flex-wrap gap-6">
       <a href="https://github.com/Nozhan84" target="_blank" class="social-icon">
         <i data-feather="github"></i>
@@ -1010,6 +975,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <i data-feather="send"></i>
       </a>
     </div>
+
   </div>
 </section>
 
@@ -1019,7 +985,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 </footer>
 
 <style>
-/* ===== Social Icons (Luxury Hover + Float) ===== */
+/* ================= SOCIAL ICONS STYLE ================= */
+/* Luxury hover + floating micro animation */
 .social-icon {
   display: inline-flex;
   align-items: center;
@@ -1042,47 +1009,54 @@ document.addEventListener('DOMContentLoaded', async () => {
   color: #fff;
 }
 
-/* Floating micro animation */
+/* Floating icon animation */
 @keyframes floatSocial {
   0%,100% { transform: translateY(0) rotate(0deg); }
   25% { transform: translateY(-3px) rotate(1deg); }
   50% { transform: translateY(-5px) rotate(-1deg); }
   75% { transform: translateY(-3px) rotate(0.5deg); }
 }
+
 .social-icon i {
   animation: floatSocial 4s ease-in-out infinite;
   display: block;
 }
 
-/* Responsive gap for smaller screens */
+/* Responsive sizing for small screens */
 @media (max-width: 480px) {
-  .social-icon { width: 50px; height: 50px; font-size: 1.2rem; }
+  .social-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
 }
 </style>
 
 <script>
+  // Initialize Feather icons
   feather.replace();
 
-  // Fade-in sections
+  // Fade-in animation for sections on scroll
   const sections = document.querySelectorAll('.fade-section');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.15 });
+
   sections.forEach(section => observer.observe(section));
 </script>
 
 
-
-
-<!-- Back to Top Button -->
-  <button id="backToTop" class="fixed bottom-6 right-6 bg-indigo-500 hover:bg-indigo-600 text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 z-50">
-    ↑
-  </button>
+<!-- ================= BACK TO TOP BUTTON ================= -->
+<button
+  id="backToTop"
+  class="fixed bottom-6 right-6 bg-indigo-500 hover:bg-indigo-600 text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 z-50">
+  ↑
+</button>
 
 <style>
-/* ===== Back to Top Luxury ===== */
+/* ================= BACK TO TOP BUTTON STYLE ================= */
 #backToTop {
   font-size: 1.25rem;
   display: flex;
@@ -1104,11 +1078,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   opacity: 0;
   pointer-events: none;
 
-  /* Micro floating animation */
+  /* Floating micro animation */
   animation: floatBtn 3s ease-in-out infinite;
 }
 
-/* Hover effect: scale + rotate + glow */
+/* Hover effect: scale, rotate and glow */
 #backToTop:hover {
   transform: scale(1.3) rotate(-15deg);
   background: linear-gradient(145deg, rgba(79,70,229,0.3), rgba(55,48,163,0.3));
@@ -1116,7 +1090,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   color: #fff;
 }
 
-/* Floating micro animation */
+/* Floating animation keyframes */
 @keyframes floatBtn {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   25% { transform: translateY(-4px) rotate(2deg); }
@@ -1128,7 +1102,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 <script>
 const backToTopBtn = document.getElementById('backToTop');
 
-// نمایش دکمه وقتی صفحه اسکرول شد
+// Show button after scrolling down
 window.addEventListener('scroll', () => {
   if (window.scrollY > 300) {
     backToTopBtn.style.opacity = '1';
@@ -1139,12 +1113,11 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// اسکرول smooth به بالا وقتی کلیک شد
+// Smooth scroll to top on click
 backToTopBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 </script>
-
 
 </body>
 </html>
