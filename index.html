@@ -809,7 +809,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   modal.onclick = e => { if (e.target === modal) modal.classList.remove('active'); };
 
   /* ================= LOAD PROJECTS DATA ================= */
-  const res = await fetch('projects.json');
+  const res = await fetch('./projects.json');
   const projects = await res.json();
 
   /* ================= BUILD SLIDER PROJECT CARDS ================= */
@@ -1121,3 +1121,6 @@ backToTopBtn.addEventListener('click', () => {
 
 </body>
 </html>
+
+
+const res = await fetch('./projects.json');
