@@ -183,23 +183,107 @@ window.addEventListener('load', function() {
 
 
 
-<!-- ================= MAIN NAVIGATION BAR ================= -->
+<!-- ================= PREMIUM RESPONSIVE NAVBAR ================= -->
 <nav class="fixed top-0 w-full bg-slate-900/80 backdrop-blur border-b border-slate-800 z-50">
   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
 
-    <!-- Website / Personal Branding -->
+    <!-- Logo -->
     <h1 class="text-xl font-bold text-white">Nozhan Nazari</h1>
 
-    <!-- Desktop Navigation Links -->
+    <!-- Desktop Menu -->
     <ul class="hidden md:flex gap-6 text-sm">
-      <li><a href="#home" class="hover:text-indigo-400">Home</a></li>
-      <li><a href="#about" class="hover:text-indigo-400">About</a></li>
-      <li><a href="#skills" class="hover:text-indigo-400">Skills</a></li>
-      <li><a href="#projects" class="hover:text-indigo-400">Projects</a></li>
-      <li><a href="#contact" class="hover:text-indigo-400">Contact</a></li>
+      <li><a href="#home" class="hover:text-indigo-400 transition">Home</a></li>
+      <li><a href="#about" class="hover:text-indigo-400 transition">About</a></li>
+      <li><a href="#skills" class="hover:text-indigo-400 transition">Skills</a></li>
+      <li><a href="#projects" class="hover:text-indigo-400 transition">Projects</a></li>
+      <li><a href="#contact" class="hover:text-indigo-400 transition">Contact</a></li>
     </ul>
+
+    <!-- Mobile Button -->
+    <button id="menuBtn" class="md:hidden text-white">
+      <i data-feather="menu" class="w-6 h-6"></i>
+    </button>
   </div>
 </nav>
+
+<!-- ================= OVERLAY ================= -->
+<div id="overlay"
+     class="fixed inset-0 bg-black/50 backdrop-blur-sm
+            opacity-0 pointer-events-none
+            transition-opacity duration-300 z-40">
+</div>
+
+<!-- ================= MOBILE MENU ================= -->
+<div id="mobileMenu"
+     class="fixed top-0 left-0 w-full bg-slate-900/95 backdrop-blur
+            transform -translate-y-full opacity-0
+            transition-all duration-300 ease-out
+            z-50 md:hidden">
+
+  <ul class="flex flex-col gap-4 px-6 py-6 text-base text-white">
+    <li><a href="#home" class="mobile-link">Home</a></li>
+    <li><a href="#about" class="mobile-link">About</a></li>
+    <li><a href="#skills" class="mobile-link">Skills</a></li>
+    <li><a href="#projects" class="mobile-link">Projects</a></li>
+    <li><a href="#contact" class="mobile-link">Contact</a></li>
+  </ul>
+</div>
+
+<style>
+  .mobile-link {
+    padding: 6px 0;
+    transition: color 0.25s ease;
+  }
+  .mobile-link:active {
+    color: #818cf8; 
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('menuBtn');
+  const menu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('overlay');
+  const links = document.querySelectorAll('.mobile-link');
+  const icon = btn.querySelector('i');
+
+  let open = false;
+
+  function openMenu() {
+    menu.classList.remove('-translate-y-full', 'opacity-0');
+    menu.classList.add('translate-y-0', 'opacity-100');
+
+    overlay.classList.remove('opacity-0', 'pointer-events-none');
+    overlay.classList.add('opacity-100');
+
+    icon.dataset.feather = 'x';
+    feather.replace();
+    open = true;
+  }
+
+  function closeMenu() {
+    menu.classList.add('-translate-y-full', 'opacity-0');
+    menu.classList.remove('translate-y-0', 'opacity-100');
+
+    overlay.classList.add('opacity-0', 'pointer-events-none');
+    overlay.classList.remove('opacity-100');
+
+    icon.dataset.feather = 'menu';
+    feather.replace();
+    open = false;
+  }
+
+  btn.addEventListener('click', () => {
+    open ? closeMenu() : openMenu();
+  });
+
+  overlay.addEventListener('click', closeMenu);
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      setTimeout(closeMenu, 120);
+    });
+  });
+</script>
 
 <!-- ================= HERO / INTRODUCTION SECTION ================= -->
 <section id="home" class="min-h-screen flex items-center pt-24 bg-slate-900">
