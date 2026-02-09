@@ -25,8 +25,8 @@
   <!-- ================= FEATHER ICONS LIBRARY ================= -->
   <script src="https://unpkg.com/feather-icons"></script>
 
-  <link rel="icon" href="/images/letter-N.png" type="image/png">
-  <link rel="shortcut icon" href="/images/letter-N.png" type="image/png">
+  <!-- Favicon (32x32) used for browser tabs and bookmarks -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/letter-N.png?v=1">
 
   <style>
     /* Enable smooth scrolling for anchor navigation */
@@ -57,6 +57,7 @@
 
 
 <!-- ================= LOADER ================= -->
+<!-- Full-screen loading overlay shown before page is fully loaded -->
 <div id="loader-wrapper">
   <div class="spinner">
     <div class="spinner1"></div>
@@ -64,15 +65,20 @@
 </div>
 
 <style>
+/* Global reset for consistent layout behavior */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+/* Enable smooth scrolling and full-height layout */
 html, body {
   height: 100%;
   scroll-behavior: smooth;
 }
+
+/* Outer spinner with gradient and rotation animation */
 .spinner {
   background-image: linear-gradient(rgb(186, 66, 255) 35%, rgb(0, 225, 255));
   width: 100px;
@@ -81,8 +87,11 @@ html, body {
   text-align: center;
   border-radius: 50px;
   filter: blur(1px);
-  box-shadow: 0px -5px 20px 0px rgb(186, 66, 255), 0px 5px 20px 0px rgb(0, 225, 255);
+  box-shadow: 0px -5px 20px 0px rgb(186, 66, 255),
+              0px 5px 20px 0px rgb(0, 225, 255);
 }
+
+/* Inner blurred core for glow effect */
 .spinner1 {
   background-color: rgb(36, 36, 36);
   width: 100px;
@@ -90,41 +99,54 @@ html, body {
   border-radius: 50px;
   filter: blur(10px);
 }
-@keyframes spinning82341 { to { transform: rotate(360deg); } }
 
+/* Spinner rotation animation */
+@keyframes spinning82341 {
+  to { transform: rotate(360deg); }
+}
+
+/* Loader wrapper covering the entire viewport */
 #loader-wrapper {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(17,24,39,1);
-  display: flex; justify-content: center; align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 9999;
   transition: opacity 1s ease;
 }
+
+/* Fade-out state for loader */
 #loader-wrapper.hidden {
   opacity: 0;
   pointer-events: none;
 }
 
-/* فقط overflow مخفی، بدون padding-right */
+/* Disable page scrolling while loader is active */
 body.loading {
   overflow: hidden;
 }
 
-/* مثال nav بالای صفحه */
+/* Example fixed header (kept above loader for layout testing) */
 header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 10000; /* بالاتر از loader */
-  background-color: rgba(17,24,39,0.9); /* نیمه شفاف */
+  z-index: 10000; /* Higher than loader */
+  background-color: rgba(17,24,39,0.9); /* Semi-transparent background */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
+
+/* Header navigation links */
 header nav a {
   color: #fff;
   margin-left: 1.5rem;
@@ -134,39 +156,30 @@ header nav a {
 </style>
 
 <script>
-// اضافه کردن کلاس loading قبل از هر کاری
+// Add loading state immediately to prevent scrolling
 document.body.classList.add('loading');
 
-// وقتی DOM آماده شد
+// Ensure page starts from the top once DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    // مطمئن شویم صفحه بالا برود
-    requestAnimationFrame(() => window.scrollTo(0, 0));
+  requestAnimationFrame(() => window.scrollTo(0, 0));
 });
 
+// Handle loader fade-out after full page load
 window.addEventListener('load', function() {
-    const loader = document.getElementById('loader-wrapper');
+  const loader = document.getElementById('loader-wrapper');
 
-    setTimeout(function() {
-        loader.classList.add('hidden');
+  // Delay before starting loader hide animation
+  setTimeout(function() {
+    loader.classList.add('hidden');
 
-        setTimeout(() => {
-            loader.style.display = 'none';
-            document.body.classList.remove('loading');
-        }, 1000);
-    }, 2000);
-});
-
-// Force reload favicon بعد از اینکه loader مخفی شد
-window.addEventListener('load', () => {
-    const links = document.querySelectorAll("link[rel~='icon']");
-    links.forEach(link => {
-        const href = link.href;
-        link.href = '';
-        setTimeout(() => { link.href = href; }, 50);
-    });
+    // Remove loader from DOM after fade-out
+    setTimeout(() => {
+      loader.style.display = 'none';
+      document.body.classList.remove('loading');
+    }, 1000);
+  }, 2000);
 });
 </script>
-
 
 
 
