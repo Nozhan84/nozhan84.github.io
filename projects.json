@@ -38,5 +38,13 @@
     "built_with": "Python · SQLite · Telegram Bot API · PowerShell · Batch",
     "focus": "Offline-First Systems · Automation · Resilience",
     "github": "https://github.com/YourUsername/ShadowGate"
+  },
+  {
+  "title": "RQ-Code",
+  "subtitle": "Professional QR Management System",
+  "description": "A professional desktop QR management ecosystem built with PyQt6 and SQLite, featuring secure encrypted QR codes, dynamic UUID-based resolution, expiration control, one-time QR logic, real-time camera scanning, and a modular architecture for scalability and maintainability.",
+  "built_with": "Python · PyQt6 · SQLite · OpenCV · cryptography · qrcode · Matplotlib · uuid",
+  "focus": "Security · Modular Architecture · QR Management · Analytics · Real-Time Scanning",
+  "github": "https://github.com/Nozhan84/RQ-Code"
   }
 ]
