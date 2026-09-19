@@ -1,8 +1,24 @@
 [
   {
+    "title": "Smart Identity Access",
+    "subtitle": "AI-Powered Multi-Factor Biometric Authentication Platform",
+    "description": "A multi-factor biometric authentication platform combining face recognition, liveness detection, voice authentication, and intelligent voice challenges through a unified interface. The system uses a service-oriented architecture with REST APIs to connect independent AI services and PostgreSQL, with SQL queries for managing and analyzing user and authentication data.",
+    "built_with": "Python · PostgreSQL · SQL · Streamlit · FastAPI · OpenCV · MediaPipe · InsightFace · SpeechBrain · WebRTC",
+    "focus": "AI · Biometric Authentication · Computer Vision · Backend · Databases",
+    "github": ""
+  },
+  {
+    "title": "Code-Scope",
+    "subtitle": "Professional Code Analysis & Documentation Platform",
+    "description": "An advanced desktop application for analyzing software project structures, source code, dependencies, and generating structured technical documentation and reports. The platform provides project visualization, statistical dashboards, intelligent search, file analysis, and multi-format reporting through a modular architecture with efficient multithreaded processing.",
+    "built_with": "Python · PyQt6 · JSON · QSS · Multithreading · File System Analysis",
+    "focus": "Code Analysis · Documentation · Project Insights · Desktop Software",
+    "github": ""
+  },
+  {
     "title": "VoxScript",
-    "subtitle": "Real-time Audio Transcription App",
-    "description": "A real-time voice-to-text desktop application powered by Whisper AI, featuring multi-language support, live progress tracking, and automatic transcription saving with a modern PyQt6 interface.",
+    "subtitle": "Real-Time Audio Transcription App",
+    "description": "A real-time voice-to-text desktop application powered by Whisper AI, featuring multi-language transcription, live progress tracking, and automatic transcription saving through a modern PyQt6 interface. The application focuses on efficient speech processing, user interaction, and automated transcription workflows.",
     "built_with": "Python · PyQt6 · Whisper AI · Torch",
     "focus": "Speech Recognition · UX · Automation",
     "github": "https://github.com/Nozhan84/VoxScript"
@@ -10,41 +26,41 @@
   {
     "title": "MagicVolumeCam",
     "subtitle": "Gesture-Based Volume Controller",
-    "description": "A computer vision application that allows users to control music volume using hand gestures in real-time, combining MediaPipe hand tracking with a modern PyQt6 GUI and Pygame audio control.",
+    "description": "A real-time computer vision application that enables users to control audio volume through hand gestures. The system combines MediaPipe hand tracking with OpenCV, PyQt6, and Pygame to provide real-time gesture recognition, visual feedback, and interactive audio control.",
     "built_with": "Python · OpenCV · MediaPipe · PyQt6 · Pygame",
-    "focus": "Computer Vision · Real-time Interaction · Human-Computer Interface",
+    "focus": "Computer Vision · Real-Time Interaction · Human-Computer Interface",
     "github": "https://github.com/Nozhan84/MagicVolumeCam"
   },
   {
     "title": "FaceSense AI",
     "subtitle": "Real-Time Face Analysis System",
-    "description": "A real-time face analysis desktop application featuring face mesh visualization, emotion detection, and face recognition using MediaPipe and DeepFace within a PyQt6-based interface.",
+    "description": "A real-time face analysis desktop application combining face mesh visualization, emotion analysis, and face recognition through MediaPipe and DeepFace. The system provides an interactive PyQt6 interface for real-time computer vision processing and visual analysis.",
     "built_with": "Python · MediaPipe · DeepFace · OpenCV · PyQt6",
-    "focus": "Computer Vision · Emotion Analysis · Performance",
+    "focus": "Computer Vision · Face Recognition · Emotion Analysis",
     "github": "https://github.com/Nozhan84/facesense-ai"
   },
   {
     "title": "Assignment Manager",
     "subtitle": "Student Assignment Management Platform",
-    "description": "A full-stack student assignment management system featuring a Flask REST API, Telegram bot integration, and a web-based dashboard for managing assignments and file uploads.",
-    "built_with": "Python · Flask · MySQL · Telegram Bot API · HTML/CSS/JS",
-    "focus": "Backend Systems · API Design · Automation",
+    "description": "A full-stack student assignment management platform built around a Flask REST API, Telegram bot integration, and web-based dashboard. The system manages assignments, file uploads, and user-related data through MySQL while providing automated communication and structured backend workflows.",
+    "built_with": "Python · Flask · MySQL · SQL · Telegram Bot API · HTML/CSS/JS",
+    "focus": "Backend Systems · REST API · Database · Automation",
     "github": "https://github.com/Nozhan84/assignment_manager_1"
   },
   {
     "title": "ShadowGate",
-    "subtitle": "Offline Survival Toolkit for Restricted Internet",
-    "description": "A local-first survival toolkit designed for restricted or offline internet environments, combining a Telegram bot, proxy management, automation scripts, and an offline-friendly architecture.",
-    "built_with": "Python · SQLite · Telegram Bot API · PowerShell · Batch",
-    "focus": "Offline-First Systems · Automation · Resilience",
+    "subtitle": "Hybrid Offline-First Connectivity & Automation Platform",
+    "description": "A portable Hybrid Offline-First platform designed for environments with limited or unstable connectivity. The system combines local automation, Telegram bot integration, resource management, and data processing while using SQLite and SQL queries to manage structured local data across online and offline workflows.",
+    "built_with": "Python · SQLite · SQL · Telegram Bot API · PowerShell · Batch · Automation",
+    "focus": "Offline-First Systems · Automation · Data Management · Resilience",
     "github": "https://github.com/YourUsername/ShadowGate"
   },
   {
-  "title": "RQ-Code",
-  "subtitle": "Professional QR Management System",
-  "description": "A professional desktop QR management ecosystem built with PyQt6 and SQLite, featuring secure encrypted QR codes, dynamic UUID-based resolution, expiration control, one-time QR logic, real-time camera scanning, and a modular architecture for scalability and maintainability.",
-  "built_with": "Python · PyQt6 · SQLite · OpenCV · cryptography · qrcode · Matplotlib · uuid",
-  "focus": "Security · Modular Architecture · QR Management · Analytics · Real-Time Scanning",
-  "github": "https://github.com/Nozhan84/RQ-Code"
+    "title": "RQ-Code",
+    "subtitle": "Professional QR Code Generation & Security Management Platform",
+    "description": "A desktop QR management platform for generating, managing, scanning, and validating secure QR codes. The system supports encrypted, dynamic, private, and one-time QR workflows, expiration control, camera-based scanning, analytics, and a modular architecture, with SQLite and SQL queries used to manage QR data and scan records.",
+    "built_with": "Python · PyQt6 · SQLite · SQL · OpenCV · Cryptography · Pillow · Matplotlib",
+    "focus": "Security · QR Management · Database · Analytics · Real-Time Scanning",
+    "github": "https://github.com/Nozhan84/RQ-Code"
   }
 ]
